@@ -1,0 +1,14 @@
+{
+  "name": "arl-project",
+  "version": "1.0.0",
+  "description": "ARL Internship Project",
+  "main": "./server/server.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
