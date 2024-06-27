@@ -14,3 +14,6 @@ backend and frontned. I learned a lot about middlewear, error handling, and how 
     - 7/10: Work on database search functionality 
     - 7/17: Work on frontend/fix bugs
     - 7/24: Work up paper and presentation
+
+## 6/26/24
+Today, I continued with my tutorials and implemented my MongoDB database into my test project, which was super exciting, and not as bad as I thought it would be! I read a couple chapters on MongoDB design choices, and learned about embedded vs normalized data methods (in both relational and document based), and how we can implement a form of either in MongoDB based on our accessing/writing needs. I am not sure what I would like to do with my web scraping data yet, since I am unsure of the format it will be in. Alongside this, I also learned about controllers and how they work alongside routers and the database, and solidified a general understanding of the MVC framework for the backend of a project. I’m pretty happy with where I am at right now of in terms of understanding! Tomorrow, I will finish up the small portion I have left on Controllers. After that, I think I will have enough knowledge to move onto webscrapers and I will delve into the other misc. backend and front end things after I learn how to use puppeteer first. 
