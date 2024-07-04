@@ -10,7 +10,7 @@ const logEvents = async(message, logFileName) => {
     const logItem = `${dateTime}\t${uuid()}\t${message}\n`
     try {
         // if folder doesn't exist
-        if(fs.existsSync(path.join(__dirname, '..', 'logs', logFileName))) {
+        if(!fs.existsSync(path.join(__dirname, '..', 'logs'))) {
             await fsPromises.mkdir(path.join(__dirname, '..', 'logs')) // want this done in bg
         }
         await fsPromises.appendFile(path.join(__dirname, '..', 'logs', logFileName), logItem) 

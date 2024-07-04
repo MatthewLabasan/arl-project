@@ -2,7 +2,7 @@ const { logEvents } = require("./logger")
 
 const errorHandler = (err, req, res, next) => {
     // log error
-    logEvents(`${err.name}\t${err.message}\t${err.method}`, 'errLog.log') // request log
+    logEvents(`${err.name}: ${err.message}\t${req.method}\t${req.url}\t${req.headers.origin}`, 'errLog.log')
     console.log(err.stack) // will give err info
 
     // response
@@ -11,5 +11,5 @@ const errorHandler = (err, req, res, next) => {
     res.json({ message: err.message })
 }
 
-module.exports = errorHandler
+module.exports = errorHandler // note: required so that the app knows what methods it can use from this file
 
