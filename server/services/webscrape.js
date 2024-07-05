@@ -19,6 +19,7 @@ async function webscrape() { // this explicitly runs it.
     const titles = await Promise.all(infoHandles.map(async handle => await page.evaluate(el => el.textContent, handle)))
     console.log(titles)
 
+    
 }
 
 module.exports = {
