@@ -27,7 +27,7 @@ const blogpostSchema = new mongoose.Schema({
 module.exports = mongoose.model('Blogpost', blogpostSchema)
 
 // controller will direct api calls to access this stuff
-// add to this schema from webscrapper file. don't need controller.
+// add to this schema from webscrapper file. may need controller to modularize.
 
 // future method for possible openAI use for summarization
 // blogpostSchema.methods
