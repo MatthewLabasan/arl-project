@@ -11,7 +11,7 @@ const blogpostSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        default: null
+        default: "No description created yet."
     },
     body: {
         type: String,
@@ -19,12 +19,18 @@ const blogpostSchema = new mongoose.Schema({
     },
     URL: {
         type: String,
-        required: true
+        required: true  
     }
 
 })
 
 module.exports = mongoose.model('Blogpost', blogpostSchema)
+
+// get urls, create scheme in js for every url, pass url into python script
+// get python script data output and update it in blogpost schema
+// repeat until loop is empty
+
+// WHAT IF WE KEEP URL IN STATIC AND NOT INSIDE DATABASE? REDUCE THAT CONNECTION. Just grab urls, hold in array, pass it into python. Multiple?
 
 // controller will direct api calls to access this stuff
 // add to this schema from webscrapper file. may need controller to modularize.

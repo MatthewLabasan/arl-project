@@ -7,8 +7,9 @@ const cookieParser = require('cookie-parser');
 const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
 const { logger } = require('./middleware/logger');
-const errorHandler = require('./middleware/errorHandler') // cannot destructure because of imports in file
-const { webscrape } = require('./services/webscrape')
+const errorHandler = require('./middleware/errorHandler') // cannot destructure because we are asking app to use this file
+const { webscrape } = require('./services/webscraper/webscrape')
+const { websiteData } = require ('./services/webscraper/websiteData')
 const PORT = process.env.PORT || 3500
 
 const app = express();
@@ -20,7 +21,7 @@ app.use(logger) // custom logs
 app.use(cors(corsOptions)) // cross origin request management (for front and back sep. and security)
 app.use(express.json()) 
 app.use(cookieParser())
-webscrape()
+webscrape(websiteData)
 
 
 app.use('/', express.static(path.join(__dirname, 'public')))

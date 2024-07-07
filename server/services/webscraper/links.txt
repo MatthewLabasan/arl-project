@@ -1,0 +1,7 @@
+div.summary-list__items > div:nth-child(n) > div.SummaryItemAssetContainer-gwhFFH.ogpYq.summary-item__asset-container > a/story/glp1-no-weight-loss-ozempic-wegovy-mounjaro-semaglutide-tirzepatide/
+div.summary-list__items > div:nth-child(n) > div.SummaryItemAssetContainer-gwhFFH.ogpYq.summary-item__asset-container > a/story/us-state-department-diplomacy-school/
+div.summary-list__items > div:nth-child(n) > div.SummaryItemAssetContainer-gwhFFH.ogpYq.summary-item__asset-container > a/gallery/best-eero-wi-fi-mesh-router/
+div.summary-list__items > div:nth-child(n) > div.SummaryItemAssetContainer-gwhFFH.ogpYq.summary-item__asset-container > a/review/steelseries-arctis-nova-5x-wireless/
+div.summary-list__items > div:nth-child(n) > div.SummaryItemAssetContainer-gwhFFH.ogpYq.summary-item__asset-container > a/story/how-to-buy-the-right-tv/
+div.summary-list__items > div:nth-child(n) > div.SummaryItemAssetContainer-gwhFFH.ogpYq.summary-item__asset-container > a/review/t3-aire-360/
+div.summary-list__items > div:nth-child(n) > div.SummaryItemAssetContainer-gwhFFH.ogpYq.summary-item__asset-container > a/gallery/best-luggage/
