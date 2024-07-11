@@ -38,3 +38,11 @@ Today, I worked on optimizing my webscraper by exploring different methods to we
 - See personal notes on how to handle and if we want to implement them
 #### Other Things to Solve Later
 - Whether sql or nosql is best, given that a table would be useful for keyword search
+
+Today, I worked on fixing some webscraping bugs and am ready to move onto Newspaper. I thought about my database more and might more to a relational database since I want to grab data based on key words, and a table might be better for this. Not sure yet though! Tomorrow, I will move onto Newspaper and implementing that python file into my server.js file. Here is my updated timeline:
+    - 7/10: Finish webscraping with Newspaper, begin trying to put data into database
+        - ongoing on the side before 7/18: CV program for Kai
+    - 7/17: Work on database functionality and webscrape automation
+    - 7/24: Work on user input of keywords/email, and mild front end work
+    - 7/31: Continue, and write up report
+    - 8/7: Work on report and presentataion
