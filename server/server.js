@@ -8,7 +8,7 @@ const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
 const { logger } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler') // cannot destructure because we are asking app to use this file
-const { webscrape } = require('./services/webscraper/webscrape')
+const { webscraper } = require('./services/webscraper/webscraper')
 const { websiteData } = require ('./services/webscraper/websiteData')
 const PORT = process.env.PORT || 3500
 
@@ -21,12 +21,13 @@ app.use(logger) // custom logs
 app.use(cors(corsOptions)) // cross origin request management (for front and back sep. and security)
 app.use(express.json()) 
 app.use(cookieParser())
-webscrape(websiteData)
 
+webscraper(websiteData)
 
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root')) // notice import is inside
 
+// Last middleware to use
 app.use(errorHandler) 
 
 mongoose.connection.once('open', () => {

@@ -1,2 +1,2 @@
 # arl-project
-ARL Internship Projectg
+ARL Internship Project

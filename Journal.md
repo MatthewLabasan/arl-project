@@ -29,3 +29,12 @@ Today, I continued exploring the webscraper and trying to optimize the elements 
 
 ## 7/5/24
 Today, I worked on optimizing my webscraper by exploring different methods to webscrape without having to hard code every single website I would like to scrape. Ideally, a web crawler would be best for this project, but for the sake of time and resources, I will be scraping only 10-15 tech news websites for specific keywords. To assist in this, I will now be using a combination of Puppeteer and Newspaper (python). Today, I was able to draw out a new diagram and reassess where data will be flowing in the database, as well as rework my mongoDB schemas. I also worked on the Misos, so didn't have much time to work on my project. This weekend, I will try to implement Newspaper and attempt to run python scripts from my JS server.
+
+## 7/10/24
+### Problems encountered and may need solving:
+#### Data Cleaning
+- Links that don't lead to articles
+- Websites that already have concatenated links. 
+- See personal notes on how to handle and if we want to implement them
+#### Other Things to Solve Later
+- Whether sql or nosql is best, given that a table would be useful for keyword search

@@ -5,47 +5,54 @@ const { selectorTest } = require('./selectorTest')
  * Webscrapes specific websites for new article links. If a new website is to be scraped, add it to websiteData.js
  * @return an array of arrays containing article links
 */
-
-async function webscrape(websiteData) { 
+const webscrape = async(websiteData) => { 
     // array of link arrays
     const linkStack = new Array()
 
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         defaultViewport: false,
         userDataDir: `./tmp` // data directory for website to remember actions
     });
-    const page = await browser.newPage();
+    const page = await browser.newPage()
     console.log('Web Scraper started successfully.')
 
-    for(i = 0; i < websiteData.length; i++) {
-        console.log(i)
-        await page.goto(websiteData[i]);
-
-        // blogpost cards (modify for each website)
-        const handles = await page.$$(websiteData[++i])
-        console.log(i)
-
+    for(i = 0; i < websiteData.length; i=i+3) {
+        try {
+            await page.goto(websiteData[i], {waitUntil: 'load', timeout: 0}); // waitUntil prevents need to load all resources
+        } catch(err) {
+            console.log(`Website <${websiteData[i]}> could not be loaded. \n${err}`)
+            continue
+        }
+        // article handles
+        const handles = await page.$$(websiteData[i+2])
+        console.log(handles)
         // create array of links
-        const links = await Promise.all(handles.map(async handle => websiteData[i] + await (page.evaluate(el => el.getAttribute('href'), handle))))
-
+        const links = await Promise.all(handles.map(async handle => websiteData[i+1] + await (page.evaluate(el => el.getAttribute('href'), handle))))
         // add array to linkStack
         linkStack.push(links)
-        console.log(i)
-
-        // NEED TO FIX i
     }
-
+    console.log(`\n`)
     // check to ensure css selector works correctly 
     selectorTest(linkStack) 
     console.log(linkStack)
 
-    // send to python
     return linkStack
 }
 
+const webscraper = async(websiteData) => {
+    var data = null
+    try {
+        data = await webscrape(websiteData)
+    } catch(err) {
+        console.log(`Webscraper failed. ${err}`)
+    }
+    // send to python
+    return data
+}
+
 module.exports = {
-    webscrape
+    webscraper
 }
 
 
