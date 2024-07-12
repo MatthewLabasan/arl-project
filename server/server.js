@@ -8,8 +8,8 @@ const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
 const { logger } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler') // cannot destructure because we are asking app to use this file
-const { webscraper } = require('./services/webscraper/webscraper')
-const { websiteData } = require ('./services/webscraper/websiteData')
+const { webscraper } = require('./services/webscraper1/webscraper')
+const { websiteData } = require ('./services/webscraper1/websiteData')
 const PORT = process.env.PORT || 3500
 
 const app = express();
@@ -22,7 +22,7 @@ app.use(cors(corsOptions)) // cross origin request management (for front and bac
 app.use(express.json()) 
 app.use(cookieParser())
 
-webscraper(websiteData)
+webscraper(websiteData) // pass this into python
 
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root')) // notice import is inside

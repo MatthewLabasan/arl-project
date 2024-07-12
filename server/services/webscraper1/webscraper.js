@@ -26,7 +26,6 @@ const webscrape = async(websiteData) => {
         }
         // article handles
         const handles = await page.$$(websiteData[i+2])
-        console.log(handles)
         // create array of links
         const links = await Promise.all(handles.map(async handle => websiteData[i+1] + await (page.evaluate(el => el.getAttribute('href'), handle))))
         // add array to linkStack
@@ -35,7 +34,7 @@ const webscrape = async(websiteData) => {
     console.log(`\n`)
     // check to ensure css selector works correctly 
     selectorTest(linkStack) 
-    console.log(linkStack)
+    // console.log(linkStack)
 
     return linkStack
 }
