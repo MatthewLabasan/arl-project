@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer')
+const fsPromises = require('fs').promises
+const path = require('path')
 const { selectorTest } = require('./selectorTest')
 
 /** 
@@ -10,7 +12,7 @@ const webscrape = async(websiteData) => {
     const linkStack = new Array()
 
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         defaultViewport: false,
         userDataDir: `./tmp` // data directory for website to remember actions
     });
@@ -19,13 +21,14 @@ const webscrape = async(websiteData) => {
 
     for(i = 0; i < websiteData.length; i=i+3) {
         try {
-            await page.goto(websiteData[i], {waitUntil: 'load', timeout: 0}); // waitUntil prevents need to load all resources
+            await page.goto(websiteData[i], {waitUntil: 'domcontentloaded', timeout: 0}); // waitUntil prevents need to load all resources
         } catch(err) {
             console.log(`Website <${websiteData[i]}> could not be loaded. \n${err}`)
             continue
         }
         // article handles
         const handles = await page.$$(websiteData[i+2])
+        console.log(handles)
         // create array of links
         const links = await Promise.all(handles.map(async handle => websiteData[i+1] + await (page.evaluate(el => el.getAttribute('href'), handle))))
         // add array to linkStack
@@ -39,19 +42,25 @@ const webscrape = async(websiteData) => {
     return linkStack
 }
 
-const webscraper = async(websiteData) => {
+const webscraper1 = async(websiteData) => {
     var data = null
     try {
         data = await webscrape(websiteData)
+        console.log("Webscraper finished running sucessfully.")
     } catch(err) {
         console.log(`Webscraper failed. ${err}`)
     }
-    // send to python
-    return data
+    // create json file for Newspaper.py
+    try {
+        await fsPromises.writeFile(path.join(__dirname, 'files', 'links.json'), JSON.stringify(data)) 
+        console.log("JSON file created and ready for Python parsing.")
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 module.exports = {
-    webscraper
+    webscraper1
 }
 
 

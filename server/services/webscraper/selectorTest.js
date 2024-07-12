@@ -10,7 +10,7 @@ const selectorTest = async(arrayOfLinks) => {
     const links = arrayOfLinks.flat().join('\n') // turn into single string
     try {
         // create a new file everytime
-        await fsPromises.writeFile(path.join(__dirname, 'links.txt'), links) 
+        await fsPromises.writeFile(path.join(__dirname, 'files', 'links.txt'), links) 
     } catch (err) {
         console.log(err)
     }

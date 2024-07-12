@@ -29,7 +29,7 @@ websiteData.push('https://www.azosensors.com/news-index.aspx')
 websiteData.push('https://www.azosensors.com')
 websiteData.push('#ctl00_cphBody_latestNewsItems_posts .col-xs-9 > h3 > a') 
 
-// robots
+// robots: something is wrong here
 websiteData.push('https://www.sciencedaily.com/news/computers_math/robotics/')
 websiteData.push('https://www.sciencedaily.com')
 websiteData.push('#featured_blurbs > div:nth-child(n) > div > a')
