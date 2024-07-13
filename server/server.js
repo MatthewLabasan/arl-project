@@ -8,8 +8,7 @@ const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
 const { logger } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler') // cannot destructure because we are asking app to use this file
-const { webscraper1 } = require('./services/webscraper/webscraper1')
-const { websiteData } = require ('./services/webscraper/websiteData')
+const { scheduleScrape } = require('./services/webscraper/webscraper')
 const PORT = process.env.PORT || 3500
 
 const app = express();
@@ -26,7 +25,7 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root')) // notice import is inside
 
 // Webscraper & Scheduler
-webscraper1(websiteData)
+scheduleScrape()
     // chron schedule the functions below
     // python child script passing in ./services/webscraper1/links.json
 
