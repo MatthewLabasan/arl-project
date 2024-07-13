@@ -3,13 +3,14 @@ const fsPromises = require('fs').promises
 const path = require('path')
 const { selectorTest } = require('./selectorTest')
 
-var message = "[Puppeteer] Internal Errors: "
-
 /** 
  * Webscrapes specific websites for new article links. If a new website is to be scraped, add it to websiteData.js
- * @return an array of arrays containing article links
+ * Creates JSON file for scrapeNewspaper.py
+ * @returns message log string
 */
-const webscrape = async(websiteData) => { 
+const scrapeLinks = async(websiteData) => { 
+    let message = "[Puppeteer] Internal Log: "
+
     // array of link arrays
     const linkStack = new Array()
 
@@ -25,44 +26,44 @@ const webscrape = async(websiteData) => {
         try {
             await page.goto(websiteData[i], {waitUntil: 'domcontentloaded', timeout: 60000}); // waitUntil prevents need to load all resources
         } catch(err) {
-            message += `Website <${websiteData[i]}> could not be loaded. \n${err}`
+            message += `Website <${websiteData[i]}> could not be loaded and is excluded from JSON file. \n\t${err}\n `
             continue
         }
         // article handles
         const handles = await page.$$(websiteData[i+2])
-            // console.log(handles)
+
         // create array of links
         const links = await Promise.all(handles.map(async handle => websiteData[i+1] + await (page.evaluate(el => el.getAttribute('href'), handle))))
+
         // add array to linkStack
         linkStack.push(links)
     }
-    console.log(`\n`)
+
     // check to ensure css selector works correctly 
     selectorTest(linkStack) 
-        // console.log(linkStack)
+  
+    // create json file for scrapeNewspaper.py
+    try {
+        await fsPromises.writeFile(path.join(__dirname, 'files', 'links.json'), JSON.stringify(linkStack)) 
+        message += `\tJSON file created and ready for Python parsing. `
+    } catch (err) {
+        message += `JSON file creation failed. ${err} `
+        return message += '| '
+    }
 
     message += "| "
-    return linkStack
+    return message
 }
 
 const scrapePuppeteer = async(websiteData) => { 
-    var data = null
+    let message
     try {
-        data = await webscrape(websiteData)
-        message += "Puppeteer finished running sucessfully."
-
-        // create json file for Newspaper.py // WHY RACE CONDITIONS???
-        try {
-            await fsPromises.writeFile(path.join(__dirname, 'files', 'links.json'), JSON.stringify(data)) 
-            message += "\tJSON file created and ready for Python parsing."
-        } catch (err) {
-            message += `\tJSON file creation failed. ${err}`
-        }
+        message = await scrapeLinks(websiteData)
     } catch(err) {
-        message += `Puppeteer failed. ${err}`
-        return message
+        message = ` "[Puppeteer] Internal Log: ${err}`
+        return message += `Unsuccessful Puppeteer: Please fix error and rerun schedule for latest updates.`
     }
-
+    message += `Puppeteer finished running sucessfully.` // had to move external instead of next to data because it kept being done before error was caught
     return message
 }
 
@@ -75,5 +76,5 @@ module.exports = {
     - websiteData holds main website link and css selector in an array
     - server calls websraper(websiteData)
     - webscraper iterates through websiteData in a for loop O(n), adding new articles links to linkStack. calls selectorTest(linkStack) to print out
-        a test that ensures all links are correctly obtained, essentially checking CSS selectors. Returns linkStack to server, for passing to Python script & Newspaper.
+        a test that ensures all links are correctly obtained, essentially checking CSS selectors. Pushes linkstack to json file, for passing to Python script & Newspaper.
 */

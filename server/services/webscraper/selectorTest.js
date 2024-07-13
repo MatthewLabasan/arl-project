@@ -1,6 +1,7 @@
 const fsPromises = require('fs').promises
 const path = require('path')
 
+// NEED TO MODIFY FOR EASY USE
 /**
  * Tests whether or not your CSS selectors are choosing the correct
  *      links by creating a links.txt file. Alternatively, print your link array to console.
