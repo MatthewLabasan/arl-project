@@ -51,4 +51,17 @@ Today, I worked on fixing some webscraping bugs and am ready to move onto Newspa
 Today, I began implementing a python file with Newspaper into my project, and did a bunch of random research on the side to learn more about how these files can be run through Node. I've considered a bunch of different options, such as using a child process (a bit slow, but fine for the purpose of my project), creating a backend formed on python (probably the most efficient, but not sure if I have time atp. will see if I can try this to futher my research on backend technologies), or using something like AWS Lambda (I don't really want to go down a whole cloud computing thing right now tho...), so I will just probably do the child processes in node.js. Tomorrow, I will continue working on this and try to integrate a new database as I don't think Mongo suits my needs anymore. Maybe ElasticSearch would be great, as I talked with Kayla about it. I will also work on the CV project so that we have a working program before next Thurs.
 
 # 7/12/24
-Today, I implemented a webscraper error log and a scheduler. I am currently facing race conditions(?) with my try catch and error logging. Though it works! Now, I need to start implementing Newspaper. I also explored
+Today, I implemented a webscraper error log and a scheduler. The error log is important in making sure the scheduler is running correctly and describing what errors are occurring within my webscraper. Next, I will implement a child process and implement the Newspaper library (which shouldn't be too difficult). I am planning on switching databases, so I will attempt at doing that next week (this will be the hard part for me!). Then, I'll be done with most of the backend / have covered the topics I wanted to cover in my project! The rest of the time will be spent fixing bugs / frontend and user input.
+    - 7/13: 
+        - Work on CV program for Kai until 7/17 or until ready
+        - Implement Newspaper and child function
+    - 7/17: 
+        - Continue with Newspaper 
+        - Work on database integration and data normalization/relationships/schemas
+    - 7/24: 
+        - Work on user input of keywords/email, and mild front end work
+        - Work on email automation, and if time, making the emails look nice. 
+    - 7/31: 
+        - Continue above
+        - write up report and draft slides
+    - 8/7: Present!
