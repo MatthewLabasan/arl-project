@@ -20,7 +20,7 @@ const scrapeLinks = async(websiteData) => {
         userDataDir: `./tmp` // data directory for website to remember actions
     });
     const page = await browser.newPage()
-    console.log('Web Scraper started successfully.')
+    console.log('Puppeteer started successfully.')
 
     for(i = 0; i < websiteData.length; i=i+3) {
         try {
@@ -45,7 +45,7 @@ const scrapeLinks = async(websiteData) => {
     // create json file for scrapeNewspaper.py
     try {
         await fsPromises.writeFile(path.join(__dirname, 'files', 'links.json'), JSON.stringify(linkStack)) 
-        message += `\tJSON file created and ready for Python parsing. `
+        message += `JSON file created and ready for Python parsing. `
     } catch (err) {
         message += `JSON file creation failed. ${err} `
         return message += '| '
@@ -60,10 +60,10 @@ const scrapePuppeteer = async(websiteData) => {
     try {
         message = await scrapeLinks(websiteData)
     } catch(err) {
-        message = ` "[Puppeteer] Internal Log: ${err}`
-        return message += `Unsuccessful Puppeteer: Please fix error and rerun schedule for latest updates.`
+        message = `[Puppeteer] Internal Log: ${err}`
+        return message += `Unsuccessful Puppeteer: Please fix error and rerun schedule for latest updates.\n==================================================================================================================================`
     }
-    message += `Puppeteer finished running sucessfully.` // had to move external instead of next to data because it kept being done before error was caught
+    message += `Puppeteer finished running sucessfully.\n==================================================================================================================================` 
     return message
 }
 
