@@ -1,3 +1,11 @@
 import newspaper as np
+import sys
+import os
 
-print("HIII", flush = True) # flush required to allow data to exit buffer and into stdout immediately
+with open('/Users/matthewlabasan/Documents/Work/ARL/arl-project/server/services/webscraper/files/links.txt', 'a') as file:  
+    file.write("\nhi")
+    file.close()
+
+print(' Ran successfully.')
+
+sys.stdout.flush()

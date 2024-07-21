@@ -9,7 +9,7 @@ const { selectorTest } = require('./selectorTest')
  * @returns message log string
 */
 const scrapeLinks = async(websiteData) => { 
-    let message = "[Puppeteer] Internal Log: "
+    let message = "Webscraper log below:\n[Puppeteer] Internal Log: "
 
     // array of link arrays
     const linkStack = new Array()
@@ -60,10 +60,10 @@ const scrapePuppeteer = async(websiteData) => {
     try {
         message = await scrapeLinks(websiteData)
     } catch(err) {
-        message = `[Puppeteer] Internal Log: ${err}`
-        return message += `Unsuccessful Puppeteer: Please fix error and rerun schedule for latest updates.\n==================================================================================================================================`
+        message = `Webscraper log below: \n[Puppeteer] Internal Log: ${err}`
+        return message += `Unsuccessful Puppeteer: Please fix error and rerun schedule for latest updates.\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n`
     }
-    message += `Puppeteer finished running sucessfully.\n==================================================================================================================================` 
+    message += `Puppeteer finished running sucessfully.\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n` 
     return message
 }
 
