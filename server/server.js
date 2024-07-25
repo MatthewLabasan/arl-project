@@ -23,9 +23,11 @@ app.use(cookieParser())
 
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root')) // notice import is inside
+app.use('/keywords', require('./routes/keywordRoutes'))
+app.use('/articles', require('./routes/articleRoutes'))
 
 // Webscraper & Scheduler
-scheduleScrape()
+// scheduleScrape()
     // chron schedule the functions below
     // python child script passing in ./services/webscraper1/links.json
 

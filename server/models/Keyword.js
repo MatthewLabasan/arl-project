@@ -1,28 +1,20 @@
 const mongoose = require('mongoose')
 
-const keywordchema = new mongoose.Schema({
-    keyword: {
+const keywordSchema = new mongoose.Schema({
+    word: {
         type: String,
         required: true
     },
     articles: {
-        type: [mongoose.Schema.Types.ObjectId], 
-        required: false, 
-        ref: 'Aricle'
-    },
-    description: {
-        type: String,
-        default: "No description created yet."
-    },
-    body: {
-        type: String,
-        default: null
-    },
-    URL: {
-        type: String,
-        required: true  
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Article'}], // declare an array or article documents. this is called referencing. will allow population of articles, but isn't enforced
+        required: true,
+        default: [] // no articles associated with keyword 
     }
-
 })
 
-module.exports = mongoose.model('Blogpost', blogpostSchema)
+// reset every time called
+// keywordSchema.methods.setArticles = (arrayOfArticles) => {
+//     this.articles = arrayOfArticles
+// }
+
+module.exports = mongoose.model('Keyword', keywordSchema)

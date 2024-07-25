@@ -65,3 +65,18 @@ Today, I implemented a webscraper error log and a scheduler. The error log is im
         - Continue above
         - write up report and draft slides
     - 8/7: Present!
+
+# 7/23/24
+Last week, I worked on the CV project. Today, I planned out the data flow from my Python webscrapper to my database, and started researching the best way to implement and normalize my documents. I decided to stick with MongoDB as learning SQL and PostgreSQL might take too long and I really need to get on my front end.
+Updated timeline:
+     - 7/24: 
+        - Finish implementing database
+        - Work on user input of keywords/email, and mild front end work
+        - Work on email automation, and if time, making the emails look nice. 
+    - 7/31: 
+        - Continue above
+        - write up report and draft slides
+    - 8/7: Present!
+
+# 7/24/24
+Today, I continued working on my project's database, finishing up creating the MVC for the main part of my application (not including users yet). Still need to finish up the article section and implementing writes to the database from python. Right now, I had planned to create articles out of an API call to my server from my Python child process, though this may not be the most efficient due to all of the overhead requests and latency that may occur. I might just need to implement pymongo and directly modify the database for specifically the keyword array appendages and article creations more efficiently. However, API calls that I implemented for the keywords are fine as is as they will be needed in the front end (not all of them tho, mostly the post and get). Will try to implement this tonight!

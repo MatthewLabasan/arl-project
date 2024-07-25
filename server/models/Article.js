@@ -3,25 +3,29 @@ const mongoose = require('mongoose')
 const articleSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        default: "Title unavailable."
+    },
+    author: {
+        type: String,
+        required: true,
+        default: "Author date unavailable."
     },
     date: {
         type: String,
-        required: true
+        required: true,
+        default: "Publish date unavailable."
     },
-    description: {
+    summary: {
         type: String,
-        default: "No description created yet."
+        required: true,
+        default: "Summary unavailable."
     },
-    body: {
+    url: {
         type: String,
-        default: null
-    },
-    URL: {
-        type: String,
-        required: true  
+        required: true,
+        default: "URL unavailable." 
     }
-
 })
 
-module.exports = mongoose.model('Article', blogpostSchema)
+module.exports = mongoose.model('Article', articleSchema)
