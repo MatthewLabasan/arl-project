@@ -7,12 +7,12 @@ const util = require('node:util');
 const execFile = util.promisify(require('node:child_process').execFile); // promise version of child_process
 
 let message = ''
-let pythonPath = path.join(__dirname, "scrapeNewspaper.py")
+let pythonPath = path.join(__dirname, "pyscraper/scrapeNewspaper.py")
 
 const newspaperAsync = async() => { 
     let newspaperMessage = "[Newspaper] Internal Log: " // move to python
     try { 
-        const { stdout } = await execFile('python', [pythonPath]) // allows us to await process to finish
+        const { stdout } = await execFile('python', [pythonPath]) // allows us to await process to finish. using python 3.11.5
         newspaperMessage += stdout.toString('utf8')
     } catch(err) {
         newspaperMessage += ('[newspaperAsync] ' + err) // other errors
@@ -21,6 +21,7 @@ const newspaperAsync = async() => {
 }
 
 const webscraper = async() => { 
+    console.log("Webscraper running...")
     try {
         // run puppeteer
         message = await scrapePuppeteer(websiteData)
@@ -40,7 +41,7 @@ const webscraper = async() => {
 
 const scheduleScrape = () => { 
     // I believe this runs on call stack, but we are calling async events. Once called, will leave.
-    const job = schedule.scheduleJob('25 * * * * *', async function(){
+    const job = schedule.scheduleJob('0 25 * * * *', async function(){
         await webscraper()
     })
 }

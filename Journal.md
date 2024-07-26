@@ -80,3 +80,21 @@ Updated timeline:
 
 # 7/24/24
 Today, I continued working on my project's database, finishing up creating the MVC for the main part of my application (not including users yet). Still need to finish up the article section and implementing writes to the database from python. Right now, I had planned to create articles out of an API call to my server from my Python child process, though this may not be the most efficient due to all of the overhead requests and latency that may occur. I might just need to implement pymongo and directly modify the database for specifically the keyword array appendages and article creations more efficiently. However, API calls that I implemented for the keywords are fine as is as they will be needed in the front end (not all of them tho, mostly the post and get). Will try to implement this tonight!
+
+After doing some research, it is probably best to utilize pymongo to connect and manipulate the database. it will reduce the multiple http calls I would have to make to my server, which would then make a mongoose call to my database anyways, so it would just be better to go straight to the http calls.
+Having this done in the child process should have little to no impact, as would have been done using the same resources anyways.
+Though, I still need to optimize how I will access this data to prevent n+1 queries that I have planned.
+PyMongo does not create schemas like mongoose, so we will need to hard code it into our file.
+
+# 7/25/24
+- Decided to switch from pymongo to MongoEngine. Would be better to create the articles from a schema I define here, rather than in JS
+- It allows me to use OOP style queries and saves that are similar to mongoose
+
+Today, I finished implementing MongoEngine in my Python file area. I had to create a duplicate schema as my models, and refactored my webscraper files to include a pyscraper folder, holding these models and my newspaper scraper. I had to learn and experiement a bit with python modules, because I forgot how to utilize the module system. I learned a lot about querying using MongoEngine, how its built on pymongo and has a lot of extra features, chaining queries/constructing them, etc. I made it as efficient as I possibly could, only utilizing two queries to the database everytime it is run.
+
+I'm doing some testing now to make sure things are running right (like basic looking at logs, testing websites, no unit tests). Then I will work on my routing and front end for user input and email functionality. Might need to work on users schema and email stuff first.
+
+Notes: 
+- Log messages don't print to console as quick as I want, waits for everything...
+- Something is wrong with the database... not adding all articles like before? need to delete the articles too...
+    - was running every minute so would overlap and mess up

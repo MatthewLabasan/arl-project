@@ -27,16 +27,13 @@ app.use('/keywords', require('./routes/keywordRoutes'))
 app.use('/articles', require('./routes/articleRoutes'))
 
 // Webscraper & Scheduler
-// scheduleScrape()
-    // chron schedule the functions below
-    // python child script passing in ./services/webscraper1/links.json
-
+scheduleScrape()
 
 // Last middleware to use
 app.use(errorHandler) 
 
 mongoose.connection.once('open', () => {
-    console.log("Connected to MongoDB database successfully.")
+    console.log("Server connected to MongoDB database successfully.")
     app.listen(PORT, () => {
         console.log(`Server listening on PORT ${PORT}. Access at <http://localhost:3500/>`)
     })

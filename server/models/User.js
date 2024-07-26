@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true  // look into validation and email field https://www.npmjs.com/package/mongoose-type-email
     },
     keywords: {
         type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Keyword'}],

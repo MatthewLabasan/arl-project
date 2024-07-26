@@ -37,10 +37,10 @@ websiteData.push('https://www.sciencedaily.com/news/computers_math/robotics/')
 websiteData.push('https://www.sciencedaily.com')
 websiteData.push('#featured_blurbs > div:nth-child(n) > div > a')
 
-// test with broken link
-websiteData.push('https://www.kasjkdsadasdjsadskjkscjkxajj.com/')
-websiteData.push('https://www.kasjkdsadasdjsadskjkscjkxajj.com/')
-websiteData.push('#featured_blurbs > div:nth-child(n) > div > a')
+// // test with broken link
+// websiteData.push('https://www.kasjkdsadasdjsadskjkscjkxajj.com/')
+// websiteData.push('https://www.kasjkdsadasdjsadskjkscjkxajj.com/')
+// websiteData.push('#featured_blurbs > div:nth-child(n) > div > a')
 
 
 // add new websites here

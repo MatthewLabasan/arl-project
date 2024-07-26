@@ -26,19 +26,19 @@ const createNewArticle = asyncHandler(async(req, res) => {
 
     // check for duplicate
     const duplicate = await Keyword.findOne( { url }).lean().exec() 
-    if(duplicate && // if dupe and date is old, remove it. # need to think about how creation impacts adding to arrays, getting ids, etc. and fix dates.
+    // if(duplicate && // if dupe and date is old, remove it. # need to think about how creation impacts adding to arrays, getting ids, etc. and fix dates.
     if(duplicate) { // else just say this.
         return res.status(400).json({ message: "Article already implemented."}) 
     }
 
     // push object
     const articleObject = { title, author, date, summary, url } // default array will populate
-    const keyword = await Keyword.create(keywordObject) // create document
+    const article = await Article.create(articleObject) // create document
 
-    if(keyword) {
-        res.status(201).json({ message: "Keyword successfully created."})
+    if(article) {
+        res.status(201).json({ message: "Article successfully created."})
     } else {
-        res.status(400).json({ message: "Invalid keyword data recieved."})
+        res.status(400).json({ message: "Invalid article data recieved."})
     }
 })
 

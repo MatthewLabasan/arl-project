@@ -16,5 +16,7 @@ __Installation__: From the terminal, run `npm install`.
     - $ curl https://raw.githubusercontent.com/codelucas/newspaper/master/download_corpora.py | python3 
 
     - use the curl to download necessary data for nlp (nltk) model
+
+    - scipy and numpy versions that are compatible
 # Notes
 __Logs__: webscraperLog.log will indicate problems that may be occurring with your links, webscraper temp. files, or JSON file creation. 
