@@ -20,3 +20,4 @@ __Installation__: From the terminal, run `npm install`.
     - scipy and numpy versions that are compatible
 # Notes
 __Logs__: webscraperLog.log will indicate problems that may be occurring with your links, webscraper temp. files, or JSON file creation. 
+- Newspaper will continue to run on whatever JSON file is available, even if there was an error with Puppetter. Need to monitor logs to ensure puppeteer ran correctly, else reschedule and fix errors so that puppeteer can update JSON.
