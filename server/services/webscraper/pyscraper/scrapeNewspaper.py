@@ -9,9 +9,6 @@ import json
 # Add models to path for relative import
 sys.path.append(os.path.join(os.path.dirname(__file__), 'models'))
 
-# Define which database to use
-database_name = "test"
-
 # Get URI
 try:
     load_dotenv()
@@ -19,8 +16,11 @@ try:
 except Exception as e:
     print('Failed to open .env file. Ensure it is filled and in the /Server directory.' + e)
 
+# Define which database to use
+DATABASE_NAME = os.getenv('DATABASE_NAME')
+
 # Create a new client and connect to the server
-client = mongoengine.connect(db=database_name, host=DATABASE_URI) # Returns PyMongo Mongo client
+client = mongoengine.connect(db=DATABASE_NAME, host=DATABASE_URI) # Returns PyMongo Mongo client
 
 # Confirm connection
 try:

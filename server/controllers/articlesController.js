@@ -17,48 +17,21 @@ const getAllArticles = asyncHandler(async(req, res) => {
 // @route POST /article
 // @access Private (not implemented yet)
 const createNewArticle = asyncHandler(async(req, res) => {
-    const { title, author, date, summary, url } = req.body 
-
-    // confirm data
-    if(!title || !author || !date || !summary || !url) {
-        return res.status(400).json({ message: "Invalid article data or none provided." })
-    }
-
-    // check for duplicate
-    const duplicate = await Keyword.findOne( { url }).lean().exec() 
-    // if(duplicate && // if dupe and date is old, remove it. # need to think about how creation impacts adding to arrays, getting ids, etc. and fix dates.
-    if(duplicate) { // else just say this.
-        return res.status(400).json({ message: "Article already implemented."}) 
-    }
-
-    // push object
-    const articleObject = { title, author, date, summary, url } // default array will populate
-    const article = await Article.create(articleObject) // create document
-
-    if(article) {
-        res.status(201).json({ message: "Article successfully created."})
-    } else {
-        res.status(400).json({ message: "Invalid article data recieved."})
-    }
+    res.status(405).json({ message: "Creation of new articles not allowed."})
 })
 
 // @desc Update a keyword
 // @route PATCH /keywords
 // @access Private (not implemented yet)
 const updateArticle = asyncHandler(async(req, res) => {
-
+    res.status(405).json({ message: "Updating articles not allowed."})
 })
 
 // @desc Delete a keyword
 // @route DELETE /keywords
 // @access Private (not implemented yet)
 const deleteArticle = asyncHandler(async(req, res) => {
-    const { word } = req.body
-    if(!word) {
-        return res.status(400).json({ message: "Invalid keyword data recieved."})
-    }
-
-    const keyword = await Keyword.findOne(word).lean().exec()
+    res.status(405).json({ message: "Deleting articles not allowed."})
 })
 
 module.exports = {

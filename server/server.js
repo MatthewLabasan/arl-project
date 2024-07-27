@@ -25,6 +25,7 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root')) // notice import is inside
 app.use('/keywords', require('./routes/keywordRoutes'))
 app.use('/articles', require('./routes/articleRoutes'))
+app.use('/users', require('./routes/userRoutes'))
 
 // Webscraper & Scheduler
 scheduleScrape()
