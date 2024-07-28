@@ -98,3 +98,6 @@ Notes:
 - Log messages don't print to console as quick as I want, waits for everything...
 - Something is wrong with the database... not adding all articles like before? need to delete the articles too...
     - was running every minute so would overlap and mess up
+
+# 7/26/24
+Today was my last day in the office! I worked a bit on my users model and did some planning for the next stage, which is the frontend, login, and email integration. I hope to finish a simple frontend over the weekend.
