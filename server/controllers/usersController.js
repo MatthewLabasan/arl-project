@@ -23,14 +23,14 @@ const createNewUsers = asyncHandler(async(req, res) => {
 // @route PATCH /keywords
 // @access Private (not implemented yet)
 const updateUsers = asyncHandler(async(req, res) => {
-    const {} = req.body
+    res.status(405).json({ message: "Updating users not implemented."})
 })
 
 // @desc Delete a user
 // @route DELETE /keywords
 // @access Private (not implemented yet)
 const deleteUsers = asyncHandler(async(req, res) => {
-    
+    res.status(405).json({ message: "Deleting users not implemented."}) // connect to email link
 })
 
 module.exports = {
