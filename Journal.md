@@ -101,3 +101,6 @@ Notes:
 
 # 7/26/24
 Today was my last day in the office! I worked a bit on my users model and did some planning for the next stage, which is the frontend, login, and email integration. I hope to finish a simple frontend over the weekend.
+
+# 7/30/24
+Today, I learned more React basics and began planning my frontend. It will be a simple two buttons to handle the user input for now, and in the future, I will put a user management page and handle auth. I learned specifics about props and componenets and how to implement buttons and state handlers.
