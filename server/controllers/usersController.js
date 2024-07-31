@@ -16,6 +16,11 @@ const getAllUsers = asyncHandler(async(req, res) => {
 // @route POST /article
 // @access Private (not implemented yet)
 const createNewUsers = asyncHandler(async(req, res) => {
+    // call this on submite for front end
+    // check all is filled in. 
+    // query keyword, then pass id into new user 
+    // else, create new keyword, hold id, pass to new user
+
     res.status(405).json({ message: "Creation of new articles not allowed."})
 })
 
