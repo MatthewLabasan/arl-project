@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import viteLogo from '/vite.svg'
+import logo from '../assets/logo.png'
 import '../components/signupform/SignUpForm.jsx'
 import SignUpForm from '../components/signupform/SignUpForm.jsx'
 import './Home.css'
@@ -11,7 +11,7 @@ const Home = () => {
     <>
       <section className='home'>
         <a href="https://github.com/MatthewLabasan/arl-project" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+          <img src={logo} className="logo" alt="Vite logo" />
         </a>
         <h1>scibyte</h1>
         <h2>Stay Informed with Tailored Research Updates</h2>

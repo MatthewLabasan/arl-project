@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Raleway, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,6 +11,16 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: Raleway-italic;
+  src: url(/Raleway-Italic-VariableFont_wght.ttf)
+}
+
+@font-face {
+  font-family: Raleway;
+  src: url(/Raleway-VariableFont_wght.ttf)
 }
 
 a {
@@ -31,8 +41,15 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-family: Raleway-italic, Inter;
+  font-size: 3.5em;
+  line-height: 1;
+}
+
+h2 {
+  font-family: Raleway, Inter;
+  font-size: 1.5em;
+  line-height: 1;
 }
 
 button {
@@ -47,11 +64,26 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #08bcee;
+  background-color: #08bcee;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+form {
+  color: #242424;
+  background-color: #ffffff;
+}
+
+#root > div > section > section > form > div > input {
+  border-color: #242424;
+}
+
+#root > div > section > section {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
 }
 
 @media (prefers-color-scheme: light) {
@@ -64,5 +96,9 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+  form {
+    color:#242424;
+    background-color:rgba(255, 255, 255, 0.87);
   }
 }

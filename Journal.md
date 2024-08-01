@@ -107,3 +107,5 @@ Today, I learned more React basics and began planning my frontend. It will be a 
 
 # 7/31/24
 Today I worked on my CSS, but it has been difficult. Going to try to move on and handle the inputs, and implement the emailing tonight.
+
+I finished a simple front end. Hoping to add logo animations, and manage subscribe buttom to be a confirmation. I also want to add pages for user management.
