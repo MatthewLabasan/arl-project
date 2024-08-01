@@ -17,27 +17,28 @@ form {
 }
 
 form .input-box {
+    display: flex;
+    flex-direction: column;
     margin: 20px;
     outline: none;
     box-sizing: border-box
 }
 
+form label {
+    display: flex;
+    justify-content: left;
+}
+
 .input-box .field {
-    width: 100%;
-    height: 50px;
+    height: 10px;
     background: transparent;
     border: 2px solid;
     outline: none;
     border-radius: 6px;
-    padding: 15px;
+    padding: 0.5em;
     font-size: 16px;
 }
 
-input:invalid {
-    background-color: ivory;
-    border: 0.12em solid rgb(214, 145, 145);
-}
-
-input:valid {
-    border: 0.05em solid black;
+.submit {
+    margin: 0 0 1em 0
 }

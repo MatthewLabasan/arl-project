@@ -15,14 +15,14 @@ const SignUpForm = () => {
                     <input type="text" className="field" placeholder="Enter your name" required></input>
                 </div>
                 <div className="input-box">
-                    <label>Email</label>
+                    <label>Email</label> 
                     <input type="email" className="field" placeholder="Enter your email" required></input>
                 </div>
                 <div className="input-box">
-                    <label>Topic</label>
-                    <input type="text" className="field" placeholder="Enter your topic" pattern="^[^\s]+$" required></input>
+                    <label>Topic</label> 
+                    <input type="text" className="field" placeholder="Enter your topic (single word)" pattern="^[^\s]+$" required></input>
                 </div>
-                <button type="submit">Subscribe</button>
+                <button className="submit" type="submit">Subscribe</button>
             </form>
         </section>
     )
