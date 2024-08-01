@@ -104,3 +104,6 @@ Today was my last day in the office! I worked a bit on my users model and did so
 
 # 7/30/24
 Today, I learned more React basics and began planning my frontend. It will be a simple two buttons to handle the user input for now, and in the future, I will put a user management page and handle auth. I learned specifics about props and componenets and how to implement buttons and state handlers.
+
+# 7/31/24
+Today I worked on my CSS, but it has been difficult. Going to try to move on and handle the inputs, and implement the emailing tonight.
