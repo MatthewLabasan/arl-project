@@ -10,14 +10,15 @@
 .logo {
   height: 10em;
   will-change: filter;
-  transition: transform 0.3s ease-in-out
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #b6b6b8aa);
-  transform: scale(1.1)
+  transform: scale(1.1);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #b6b6b8aa);
+  transform: scale(1.1);
 }
 
 @keyframes logo-spin {

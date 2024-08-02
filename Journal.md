@@ -109,3 +109,8 @@ Today, I learned more React basics and began planning my frontend. It will be a 
 Today I worked on my CSS, but it has been difficult. Going to try to move on and handle the inputs, and implement the emailing tonight.
 
 I finished a simple front end. Hoping to add logo animations, and manage subscribe buttom to be a confirmation. I also want to add pages for user management.
+
+# 8/1/24
+Today, I worked on implementing user connections and fixed some bugs with the front end. This included animation of the logo hover and dark/light mode. I was able to get the front end to send a post request to my backend, but it is not creating a new user for some reason.
+
+After fixing this bug, I would like to start on the SendGrid API integration, then work on the unsubscribe feature within this API integration. 

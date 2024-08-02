@@ -1,9 +1,10 @@
 .sign-up-form {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 35vh;
-    background: #ffffff;
+    background: transparent;
 }
 
 form {

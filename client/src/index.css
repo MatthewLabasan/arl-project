@@ -15,12 +15,12 @@
 
 @font-face {
   font-family: Raleway-italic;
-  src: url(/Raleway-Italic-VariableFont_wght.ttf)
+  src: url(/fonts/Raleway-Italic-VariableFont_wght.ttf)
 }
 
 @font-face {
   font-family: Raleway;
-  src: url(/Raleway-VariableFont_wght.ttf)
+  src: url(/fonts/Raleway-VariableFont_wght.ttf)
 }
 
 a {
@@ -66,6 +66,7 @@ button {
 button:hover {
   border-color: #08bcee;
   background-color: #08bcee;
+  transition: background-color 0.25s;
 }
 button:focus,
 button:focus-visible {
@@ -77,19 +78,30 @@ form {
   background-color: #ffffff;
 }
 
+input, select, textarea{
+  color: #000000;
+}
+
+textarea:focus, input:focus {
+  color: #000000;
+}
+
 #root > div > section > section > form > div > input {
   border-color: #242424;
 }
 
 #root > div > section > section {
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: transparent
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
+  }
+  p {
+    color: #213547
   }
   a:hover {
     color: #747bff;
@@ -99,6 +111,12 @@ form {
   }
   form {
     color:#242424;
-    background-color:rgba(255, 255, 255, 0.87);
+    background-color:rgba(152, 224, 255, 0.535);
+  }
+  input, select, textarea{
+    color: #000000;
+  }
+  textarea:focus, input:focus {
+    color: #000000;
   }
 }

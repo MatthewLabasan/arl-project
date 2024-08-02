@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import logo from '../assets/logo.png'
+import logo from '/logo.png'
 import '../components/signupform/SignUpForm.jsx'
 import SignUpForm from '../components/signupform/SignUpForm.jsx'
 import './Home.css'
