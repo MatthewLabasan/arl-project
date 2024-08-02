@@ -16,6 +16,7 @@ const getAllUsers = asyncHandler(async(req, res) => {
 
 // @desc Create new user
 // @route POST /article
+// For subscribing / adding new words
 const createNewUsers = asyncHandler(async(req, res) => {
     // call this on submite for front end
     // check all is filled in. 
@@ -27,23 +28,32 @@ const createNewUsers = asyncHandler(async(req, res) => {
         return res.status(400).json({ message: "No input provided."}) // form will have checked for correct formatting
     }
 
-    const keywordID = await Keyword.findOne(keyword.toLowerCase())._id
+    // problem: accessing ID in promise, forgetting the .exec()
+    // now, put it in the data checks below
+    let keywordID = await Keyword.findOne({word: keyword.toLowerCase()}).exec()
+    keywordID = keywordID._id
+    console.log(keywordID)
+    const userObject = User({ name, email, keywords: [keywordID] })
+    const user = await User.create(userObject)
 
-    // check if previously signed up
-    const existing = await User.updateOne({ email }, { $push: { keywords: keywordID }}) // appends new keyword
-    if(existing.matchedCount == 0) { // if not signed up
-        const userObject = User({ name, email, keywordID })
-        const user = await User.create(userObject)
-        res.status(201).json({ message: `${email} subscribed to ${keyword}.` })
-    } else {
-        res.status(200).json({message: `Existing email ${email} subscribed to ${keyword}.` })
-    }
+    // fix... also, keyword is null???
+    // // check if previously signed up
+    // const existing = await User.updateOne({ email }, { $push: { keywords: keywordID }}) // appends new keyword
+    // if(existing.matchedCount == 0) { // if not signed up
+    //     const userObject = User({ name, email, keywords: [keywordID] })
+    //     const user = await User.create(userObject)
+    //     res.status(201).json({ message: `${email} subscribed to ${keyword}.` })
+    // } else {
+    //     const existing = await User.updateOne({ email }, { $push: { keywords: keywordID } })
+    //     res.status(200).json({message: `Existing email ${email} subscribed to ${keyword}.` })
+    // }
 
     console.log("Done") // why isnt this printing
 })
 
 // @desc Update a user
 // @route PATCH /keywords
+// For unsubscribing
 const updateUsers = asyncHandler(async(req, res) => {
     const {name, email, keyword} = req.body
     if( !name || !email || !keyword ) {
