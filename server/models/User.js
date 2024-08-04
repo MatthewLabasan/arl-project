@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
     },
     keywords: {
         type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Keyword'}],
-        default: "sensor" // basic newsletter if nothing specific. perhaps a surprise me?
+        required: true,
+        default: []
     }
 })
 
