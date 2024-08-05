@@ -30,19 +30,19 @@ const createNewUsers = asyncHandler(async(req, res) => {
 
     if (keywordID) {
         keywordID = keywordID._id
-        message = `Existing keyword: ${word}. ID:${keywordID}. `
+        message = `Existing keyword: "${word}". ID:${keywordID}. `
     } else {
         let newKeywordObject = Keyword({ word, articles: []})
         let newKeyword = await Keyword.create(newKeywordObject)
         keywordID = newKeyword._id
-        message = `New keyword added: ${word}. ID:${keywordID}. `
+        message = `New keyword added: "${word}". ID:${keywordID}. `
     }
 
     // query v1
     // check if already subscribed
     var existingUser = await User.findOne({email, keywords: keywordID})
     if (existingUser) {
-        message += `${email} already subscribed to ${word}.`
+        message += `${email} already subscribed to "${word}".`
         return res.status(201).json({ message })
     }
     // check if user prev. signed up, else create user
@@ -50,10 +50,10 @@ const createNewUsers = asyncHandler(async(req, res) => {
     if(existingUser.matchedCount == 0) { // if not signed up
         let userObject = User({ name, email, keywords: [keywordID] })
         let user = await User.create(userObject)
-        message += `${email} subscribed to ${word}.`
+        message += `${email} subscribed to "${word}".`
         res.status(201).json({ message })
     } else {
-        message += `Existing email ${email} subscribed to ${word}.`
+        message += `Existing email ${email} subscribed to "${word}".`
         res.status(200).json({ message })
     }
 })
