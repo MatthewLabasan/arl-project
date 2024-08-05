@@ -18,45 +18,44 @@ const getAllUsers = asyncHandler(async(req, res) => {
 // @route POST /article
 // For subscribing / adding new words
 const createNewUsers = asyncHandler(async(req, res) => {
+    let message
     const {name, email, keyword} = req.body
     if( !name || !email || !keyword ) {
         return res.status(400).json({ message: "No input provided."}) // form will have checked for correct formatting
     }
 
     // check if keyword is present in db
-    var keywordID = await Keyword.findOne({word: keyword.toLowerCase()}).exec()
+    word = keyword.toLowerCase() 
+    var keywordID = await Keyword.findOne({ word }).exec()
 
     if (keywordID) {
         keywordID = keywordID._id
-        console.log(`Existing keyword. ID:${keywordID}`)
+        message = `Existing keyword: ${word}. ID:${keywordID}. `
     } else {
-        let newKeywordObject = Keyword({word: keyword, articles: []})
+        let newKeywordObject = Keyword({ word, articles: []})
         let newKeyword = await Keyword.create(newKeywordObject)
         keywordID = newKeyword._id
-        console.log(`New keyword added. ID:${keywordID}`)
+        message = `New keyword added: ${word}. ID:${keywordID}. `
     }
 
     // query v1
-    // find based on email. if match, check keyword, else create
-    var existingUser = await User.findOne({email}) 
-    console.log(existingUser)
-    if(existingUser) {
-        if(existingUser.keywords.includes(keywordID)) {
-            return res.status(201).json({ message: `${email} already subscribed to ${keyword}.`})
-        } else {
-            existingUser.keywords.push(keywordID)
-            res.status(200).json({message: `Existing email ${email} subscribed to ${keyword}.` })
-        }
-        existingUser.save() 
-        return
+    // check if already subscribed
+    var existingUser = await User.findOne({email, keywords: keywordID})
+    if (existingUser) {
+        message += `${email} already subscribed to ${word}.`
+        return res.status(201).json({ message })
     }
-    else {
+    // check if user prev. signed up, else create user
+    var existingUser = await User.updateOne({ email }, { $push: { keywords: keywordID }}) // appends new keyword
+    if(existingUser.matchedCount == 0) { // if not signed up
         let userObject = User({ name, email, keywords: [keywordID] })
         let user = await User.create(userObject)
-        res.status(201).json({ message: `${email} subscribed to ${keyword}.` })
+        message += `${email} subscribed to ${word}.`
+        res.status(201).json({ message })
+    } else {
+        message += `Existing email ${email} subscribed to ${word}.`
+        res.status(200).json({ message })
     }
-
-    console.log("Done") 
 })
 
 // @desc Update a user
@@ -97,26 +96,3 @@ module.exports = {
     updateUsers,
     deleteUsers
 }
-
-
-
-
-
-
-
-
-// create new users: query v1
-    // // check if user is subscribed to keyword. something is wrong with the array update
-    // var existingUser = await User.findOne({email, keywords: keywordID})
-    // if (existingUser) {
-    //     return res.status(201).json({ message: `${email} already subscribed to ${keyword}.`})
-    // }
-    // // check if previously signed up, else create user
-    // var existingUser = await User.updateOne({ email }, { $push: { keywords: keywordID }}) // appends new keyword
-    // if(existingUser.matchedCount == 0) { // if not signed up
-    //     let userObject = User({ name, email, keywords: [keywordID] })
-    //     let user = await User.create(userObject)
-    //     res.status(201).json({ message: `${email} subscribed to ${keyword}.` })
-    // } else {
-    //     return res.status(200).json({message: `Existing email ${email} subscribed to ${keyword}.` })
-    // }

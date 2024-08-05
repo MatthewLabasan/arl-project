@@ -32,7 +32,7 @@ form label {
 
 .input-box .field {
     height: 10px;
-    background: transparent;
+    background-color: rgb(240, 241, 241);
     border: 2px solid;
     outline: none;
     border-radius: 6px;
