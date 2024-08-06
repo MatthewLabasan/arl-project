@@ -18,7 +18,6 @@ const sendEmail = async () => {
                 path: 'keywords',
                 populate: { path: 'articles' }
             }).exec()
-        console.log(users[0].keywords[5].word)
     } catch (error) {
         console.log(`Error retrieving user information. ${error}`)
     }
@@ -38,20 +37,23 @@ const sendEmail = async () => {
     const body = article.summary
     const link = article.link
     console.log(email)
+
     // note: this isnt n^3 as its only touching every word and article only once for a user. possibly could be made better by caching articles or reformatting indexing / database? idk
     // send email
+    // go through each user, grab email, grab keyword, then input articles
+    // or, go through each keyword, create an email, then mail it to recipeints with that keyword id
     try {
+    
         const msg = {
             to: email,
             from: process.env.VERIFIED_SENDER_EMAIL,
-            subject: `This week's newsletter on "${word.word}"`,
-            html: `
-            <strong>${title}</strong>
-            <br></br>
-            <p>${author}, ${date}</p>
-            <br></br>
-            <p>${body}, ${link}<p>
-            `
+            templateId: process.env.TEMPLATE_ID,
+            dynamicTemplateData: {
+                "subject": `This week's newsletter on "${word.word}"`,
+                "timeStamp": `${date}`,
+                "dateFormat": "MMMM DD, YYYY h:mm:ss A",
+
+            }
         }
         sgMail
             .send(msg)
