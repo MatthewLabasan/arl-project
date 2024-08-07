@@ -29,10 +29,10 @@ app.use('/articles', require('./routes/articleRoutes'))
 app.use('/users', require('./routes/userRoutes'))
 
 // Webscraper & Scheduler
-//scheduleScrape()
+scheduleScrape()
 
 // Emailer
-sendEmail()
+// sendEmail()
 
 // Last middleware to use
 app.use(errorHandler) 

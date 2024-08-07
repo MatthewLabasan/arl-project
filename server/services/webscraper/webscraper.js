@@ -41,7 +41,7 @@ const webscraper = async() => {
 
 const scheduleScrape = () => { 
     // I believe this runs on call stack, but we are calling async events. Once called, will leave.
-    const job = schedule.scheduleJob('0 27 * * * *', async function(){
+    const job = schedule.scheduleJob('0 34 * * * *', async function(){
         await webscraper()
     })
 }
