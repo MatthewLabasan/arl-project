@@ -1,23 +1,39 @@
 import { useState } from "react"
 import './SignUpForm.css'
 
+const StatusMessage = ({status, received}) => {
+    if(received) {
+        return <p>{status}</p>
+    } 
+    return null
+}
+
 const SignUpForm = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [keyword, setKeyword] = useState('')
+    const [status, setStatus] = useState('')
+    const [received, setReceived] = useState(false)
    
-    const handleSubmit = (e) => {
-        e.preventDefault() // prevent refresh
+    const handleSubmit = async (e) => { // e = event object to be modified
+        e.preventDefault() // prevent refresh on submit
         const user = { name, email, keyword } // create json 
         console.log(user)
         
-        fetch('http://localhost:3500/users', { // fetch is async
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(user) // turn object into string
-        }).then((res) => {
-            console.log(res.text())
-        })
+        try {
+            const response = await fetch('http://localhost:3500/users', { 
+                method: 'POST',
+                headers: { "Content-Type": "application/json" }, // tells format of body
+                body: JSON.stringify(user) // turn object into string. payload
+            })
+            const json = await response.json()
+            setReceived(true)
+            setStatus(json.userMessage)
+        } catch (error) {
+            console.log(error.userMessage)
+            setReceived(true)
+            setStatus(`An error occurred. ${error}`)
+        }
     }
 
     return (
@@ -60,7 +76,7 @@ const SignUpForm = () => {
                 </div>
                 <button className="submit" type="submit">Subscribe</button>
             </form>
-            <p>{name}, {email}, {keyword}</p>
+            <StatusMessage status={status} received={received}></StatusMessage>
         </section>
     )
 }

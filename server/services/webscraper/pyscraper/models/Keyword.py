@@ -1,6 +1,4 @@
 from mongoengine import *
-import sys
-import os
 
 class Keyword(Document):
     word = StringField(required=True)

@@ -64,12 +64,17 @@ for link_array in link_arrays:
 
         # If there is common keywords (subscribed topics)
         if(common_words):
+            # format summary
+            summary = article.summary
+            if len(summary) > 400:
+                summary = summary[:400]
+                summary += "..."
             try:
                 article_document = Article(
                     title = article.title,
                     author = ' '.join(article.authors),
                     date = str(article.publish_date),
-                    summary = article.summary,
+                    summary = summary,
                     url = link
                 )
                 article_id = article_document.save().id # save and store id 

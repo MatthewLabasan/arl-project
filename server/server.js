@@ -32,7 +32,7 @@ app.use('/users', require('./routes/userRoutes'))
 scheduleScrape()
 
 // Emailer
-// sendEmail()
+sendEmail()
 
 // Last middleware to use
 app.use(errorHandler) 

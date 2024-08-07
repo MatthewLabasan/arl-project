@@ -20,9 +20,10 @@ const getAllUsers = asyncHandler(async(req, res) => {
 
 const createNewUsers = asyncHandler(async(req, res) => {
     let message
+    let userMessage
     const {name, email, keyword} = req.body
     if( !name || !email || !keyword ) {
-        return res.status(400).json({ message: "No input provided."}) // form will have checked for correct formatting
+        return res.status(400).json({ message: "No input provided.", userMessage: "No input provided."}) // form will have checked for correct formatting
     }
 
     // check if keyword is present in db
@@ -43,21 +44,24 @@ const createNewUsers = asyncHandler(async(req, res) => {
     // check if already subscribed
     var existingUser = await User.findOne({email, keywords: keywordID})
     if (existingUser) {
-        message += `${email} already subscribed to '${word}'.`
-        return res.status(201).json({ message })
+        userMessage = `${email} is already subscribed to '${word}'.`
+        message += userMessage
+        return res.status(201).json({ message, userMessage })
     }
     // check if user prev. signed up, else create user
     var existingUser = await User.findOneAndUpdate({ email }, { $push: { keywords: keywordID }}, { new: true }) // appends new keyword
     if(existingUser) { // if prev. signed up
-        message += `Existing email ${email} subscribed to '${word}'.`
+        userMessage = `Existing email ${email} subscribed to '${word}'.`
+        message += userMessage
     } else { // create user
         let userObject = User({ name, email, keywords: [keywordID] })
         existingUser = await User.create(userObject) // existingUser set to new user
-        message += `${email} subscribed to '${word}'.`
+        userMessage = `${email} subscribed to '${word}'.`
+        message += userMessage
     }
     // append user to keyword
     await Keyword.updateOne({ _id: keywordID }, { $push: { users: existingUser._id }}) 
-    res.status(200).json({ message })
+    res.status(200).json({ message, userMessage })
 })
 
 // @desc Update a user

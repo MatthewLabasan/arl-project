@@ -1,8 +1,4 @@
 from mongoengine import *
-from .Article import Article
-from .Keyword import Keyword
-import sys
-import os
 
 class User(Document):
     name = StringField(required=True)

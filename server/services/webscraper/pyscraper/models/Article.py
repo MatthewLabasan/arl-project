@@ -1,6 +1,5 @@
 from mongoengine import *
 
-# Article shecma for mongoengine. Same as mongoose schema defined in models.
 class Article(Document):
     title = StringField(required=True, default="Title unavailable.")
     author = StringField(required=True, default="Author date unavailable.")
