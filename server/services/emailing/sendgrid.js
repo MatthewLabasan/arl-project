@@ -25,35 +25,44 @@ const sendEmail = async () => {
         console.log(`Error retrieving keyword information. ${error}`)
     }
 
-    // get article array 
-    // articles = keywords[0].articles // do this inside email
-
-    try {
-        const msg = {
-            to: "tyrenjmi@gmail.com",
-            from: process.env.VERIFIED_SENDER_EMAIL,
-            templateId: process.env.TEMPLATE_ID,
-            dynamicTemplateData: {
-                "subject": `This week's newsletter on "${keywords[0].word}"`,
-                // get this iterations (keywords) articles
-                "articles": keywords[2].articles,
-                "Sender_Name": "Matthew Labasan",
-                "Sender_Address": "1234 Example Street",
-                "Sender_City": "Honolulu",
-                "Sender_State": "HI",
-                "Sender_Zip": "96826"
-            }
+    console.log(keywords)
+    for (let i = 0; i < keywords.length; i++) {
+        // prepare personalizations
+        let personalization = {
+            "personalizations": []
         }
-        sgMail
-            .send(msg)
-            .then(() => {
-                console.log('Email sent')
+        for (let j = 0; j < keywords[i].users[j].length; j++) {
+            console.log(keywords[i].users[j].email)
+            personalization.personalizations.push({ // push an object literal
+                "to": [{ "email": keywords[i].users[j].email }]
             })
-            .catch((error) => {
-                console.error(error)
-            })
-    } catch (error) {
-        console.log("An unexpected emailing error occurred: " + error)
+        }
+        console.log(personalization.to)
+        // shuffle articles
+        shuffle(keywords[i].articles)
+        // send email
+        // try {
+        //     const msg = {
+        //         personalization,
+        //         from: process.env.VERIFIED_SENDER_EMAIL,
+        //         templateId: process.env.TEMPLATE_ID,
+        //         dynamicTemplateData: {
+        //             "subject": `This week's newsletter on "${keywords[i].word}"`,
+        //             // get this iterations (keywords) articles
+        //             "articles": keywords[i].articles,
+        //         }
+        //     }
+        //     sgMail
+        //         .send(msg)
+        //         .then(() => {
+        //             console.log('Email sent')
+        //         })
+        //         .catch((error) => {
+        //             console.error(error)
+        //         })
+        // } catch (error) {
+        //     console.log("An unexpected emailing error occurred: " + error)
+        // }
     }
 }
 
@@ -77,3 +86,31 @@ function shuffle(array) {
 module.exports = {
     sendEmail
 }
+
+// try {
+//     const msg = {
+//         to: "tyrenjmi@gmail.com",
+//         from: process.env.VERIFIED_SENDER_EMAIL,
+//         templateId: process.env.TEMPLATE_ID,
+//         dynamicTemplateData: {
+//             "subject": `This week's newsletter on "${keywords[0].word}"`,
+//             // get this iterations (keywords) articles
+//             "articles": keywords[2].articles,
+//             "Sender_Name": "Matthew Labasan",
+//             "Sender_Address": "1234 Example Street",
+//             "Sender_City": "Honolulu",
+//             "Sender_State": "HI",
+//             "Sender_Zip": "96826"
+//         }
+//     }
+//     sgMail
+//         .send(msg)
+//         .then(() => {
+//             console.log('Email sent')
+//         })
+//         .catch((error) => {
+//             console.error(error)
+//         })
+// } catch (error) {
+//     console.log("An unexpected emailing error occurred: " + error)
+// }
