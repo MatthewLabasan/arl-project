@@ -9,7 +9,7 @@ const mongoose = require('mongoose')
 const { logger } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler') // cannot destructure because we are asking app to use this file
 const { scheduleScrape } = require('./services/webscraper/webscraper')
-const { sendEmail } = require('./services/emailing/sendGrid') 
+const { scheduleNewsletter } = require('./services/emailing/sendNewsletter') 
 const PORT = process.env.PORT || 3500
 
 const app = express();
@@ -32,7 +32,7 @@ app.use('/users', require('./routes/userRoutes'))
 scheduleScrape()
 
 // Emailer
-// sendEmail()
+scheduleNewsletter()
 
 // Last middleware to use
 app.use(errorHandler) 

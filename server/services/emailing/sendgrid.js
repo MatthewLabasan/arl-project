@@ -3,6 +3,7 @@ const sgMail = require('@sendgrid/mail')
 
 const sendEmail = async () => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    let message = "[Newsletter] Internal Log: "
 
     // obtain database information
     try {
@@ -13,8 +14,11 @@ const sendEmail = async () => {
             .populate({
                 path: 'users'
             }).exec()
+            message += (`Successfully populated keyword documents.\n`)
     } catch (error) {
-        console.log(`Error retrieving keyword information. ${error}`)
+        message += (`Error populating keyword information. ${error} \nPlease reschedule emails.`)
+        console.log(`Error populating keyword information. ${error} \nPlease reschedule emails.`)
+        return
     }
     
     // email each keyword
@@ -48,18 +52,25 @@ const sendEmail = async () => {
             sgMail
                 .send(msg)
                 .then(() => {
-                    console.log(`"${keyword.word}" email sent`)
+                    message += `"${keyword.word}" email sent successfully.\n`
+                    console.log(`"${keyword.word}" email sent successfully. `)
                 })
                 .catch((error) => {
                     console.error(error)
                 })
         } catch (error) {
-            console.log("An unexpected emailing error occurred: " + error)
+            message += (`An unexpected emailing error occurred: ${error}\n`)
+            console.log(`An unexpected emailing error occurred: ${error}\n`)
         }
     }
+    message += `Emailing process finished.`
+    console.log(`Emailing process finished.`)
+    return message
 }
 
-// to shuffle keywords. src: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+// create message return that awaits email loop to finish. bc it only runs the email success after the await sgMail, so it allows emailing process finished to go before hand and return. need to handle that async allowing rest to follow
+
+// src: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 const shuffle = (array) => {
     let currentIndex = array.length;
   
@@ -81,7 +92,6 @@ const limitArticles = (articles) => {
         articles = articles.slice(10)
     }
 }
-
 
 module.exports = {
     sendEmail

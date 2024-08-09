@@ -1,6 +1,3 @@
-// Probably best if we switch this to be static json or something
-
-
 /**
  * Holds the website link and CSS selector that will be used for the webscraper. 
  * To see if CSS selector works, run webscraper.js and check ./files/links.txt for the desired links at the bottom.
