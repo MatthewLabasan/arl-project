@@ -3,9 +3,10 @@
 
 /**
  * Holds the website link and CSS selector that will be used for the webscraper. 
+ * To see if CSS selector works, run webscraper.js and check ./files/links.txt for the desired links at the bottom.
  * Notes: Ensure that the CSS selector ends in the 'a' element. Ex: "div.summary-list__items > div:nth-child(n) > a"
  *        The CSS selector must be common to ensure all desired links are scraped. 
- *        Currently, only href's that are directories and not links are supported.
+ *        Currently, only website's with <a> href's that are directories and not full links are supported.
  *        Be careful with scraping from side bars, the webscraper may not be able to find it.
  * @return An array with website links and CSS selectors.
  */
@@ -15,7 +16,7 @@ const websiteData = new Array()
 // tech
 websiteData.push('https://www.wired.com') // desired page
 websiteData.push('https://www.wired.com') // website HOME page
-websiteData.push('div.summary-list__items > div:nth-child(n) > div.SummaryItemAssetContainer-gwhFFH.ogpYq.summary-item__asset-container > a') // css selector
+websiteData.push('div.summary-list__items > div:nth-child(n) > div.SummaryItemAssetContainer-gwhFFH.ogpYq.summary-item__asset-container > a') // css selector for link href
 
 // tech
 websiteData.push('https://www.theverge.com/tech') 
@@ -37,13 +38,12 @@ websiteData.push('https://www.sciencedaily.com/news/computers_math/robotics/')
 websiteData.push('https://www.sciencedaily.com')
 websiteData.push('#featured_blurbs > div:nth-child(n) > div > a')
 
-// // test with broken link
+// add new websites here
+
+// broken link test
 // websiteData.push('https://www.kasjkdsadasdjsadskjkscjkxajj.com/')
 // websiteData.push('https://www.kasjkdsadasdjsadskjkscjkxajj.com/')
 // websiteData.push('#featured_blurbs > div:nth-child(n) > div > a')
-
-
-// add new websites here
 
 module.exports = {
     websiteData 

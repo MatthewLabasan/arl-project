@@ -25,7 +25,7 @@ client = mongoengine.connect(db=DATABASE_NAME, host=DATABASE_URI) # Returns PyMo
 # Confirm connection
 try:
     client.admin.command('ping')
-    print('Python Webscraper connected to MongoDB database successfully.', end="")
+    print('Python Webscraper connected to MongoDB database successfully. ', end="")
 except Exception as e:
     print('Python Webscraper not connected to MongoDB. Resolve issue and schedule task again. ' + e)
     exit() # terminate program is Mongo is not connected. 
