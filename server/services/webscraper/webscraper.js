@@ -1,5 +1,5 @@
 const { logEvents } = require("../../middleware/logger")
-const { scrapePuppeteer } = require("./scrapePuppeteer")
+const { scrapePuppeteer } = require("./jsScraper/scrapePuppeteer")
 const { websiteData } = require("./websiteData") // file is evaluated on import, variable is populated
 const schedule = require("node-schedule") // node cron-like scheduler
 const path = require('path')
@@ -7,7 +7,7 @@ const util = require('node:util');
 const execFile = util.promisify(require('node:child_process').execFile); // promise version of child_process
 
 let message = ''
-let pythonPath = path.join(__dirname, "pyscraper/scrapeNewspaper.py")
+let pythonPath = path.join(__dirname, "pyScraper/scrapeNewspaper.py")
 
 const newspaperAsync = async() => { 
     let newspaperMessage = "[Newspaper] Internal Log: " // move to python
@@ -41,7 +41,7 @@ const webscraper = async() => {
 
 const scheduleScrape = () => { 
     // I believe this runs on call stack, but we are calling async events. Once called, will leave.
-    const job = schedule.scheduleJob('0 48 * * * *', async function(){
+    const job = schedule.scheduleJob('0 53 * * * *', async function(){
         await webscraper()
     })
 }

@@ -44,7 +44,7 @@ const scrapeLinks = async(websiteData) => {
   
     // create json file for scrapeNewspaper.py
     try {
-        await fsPromises.writeFile(path.join(__dirname, 'files', 'links.json'), JSON.stringify(linkStack)) 
+        await fsPromises.writeFile(path.join(__dirname, '..', 'files', 'links.json'), JSON.stringify(linkStack)) 
         message += `JSON file created and ready for Python parsing. `
     } catch (err) {
         message += `JSON file creation failed. ${err} `
