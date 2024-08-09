@@ -9,7 +9,7 @@ const mongoose = require('mongoose')
 const { logger } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler') // cannot destructure because we are asking app to use this file
 const { scheduleScrape } = require('./services/webscraper/webscraper')
-const { sendEmail } = require('./services/emailing/sendgrid') 
+const { sendEmail } = require('./services/emailing/sendGrid') 
 const PORT = process.env.PORT || 3500
 
 const app = express();
