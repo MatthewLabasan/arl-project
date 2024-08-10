@@ -114,3 +114,12 @@ I finished a simple front end. Hoping to add logo animations, and manage subscri
 Today, I worked on implementing user connections and fixed some bugs with the front end. This included animation of the logo hover and dark/light mode. I was able to get the front end to send a post request to my backend, but it is not creating a new user for some reason.
 
 After fixing this bug, I would like to start on the SendGrid API integration, then work on the unsubscribe feature within this API integration. 
+
+# 8/5/24
+Modified my database for users and keywords to be many to many to allow SendGrid to send one mass keyword email instead of recompiling every time.
+
+# 8/6/24
+Got a test email to work. Had trouble with Dyanmic Template because I was not saving before sending things out. Learned a lot about HTMl / CSS in emails and how to use the API (handles, personalizations)
+
+# 8/8/24
+Fixed SendGrid (Dynamic Template - data format was causing issues with dynamic template rendering) and cleaned up looping. Worked on logs and scheduling. Looking forward to finishing this then adding an unsubscribe API endpoint, then deploying!
