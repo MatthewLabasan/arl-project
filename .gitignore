@@ -4,3 +4,4 @@
 /server/.env
 /server/tmp
 /server/services/webscraper/pyscraper/models/__pycache__
+.DS_Store
