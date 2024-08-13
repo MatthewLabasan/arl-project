@@ -28,7 +28,7 @@ try:
     print('Python Webscraper connected to MongoDB database successfully. ', end="")
 except Exception as e:
     print('Python Webscraper not connected to MongoDB. Resolve issue and schedule task again. ' + e)
-    exit() # terminate program is Mongo is not connected. 
+    exit() 
 
 # Get keywords into a dictionary
 keyword_objects = Keyword.objects()
@@ -39,13 +39,12 @@ for keyword_object in keyword_objects:
 # Reset arrays and delete articles to be empty for new edition
 keyword_objects.update(set__articles = [])
 articles_objects = Article.objects()
-articles_objects.delete() # don't have to delete, could save them all as an archive for search engine. would need to query again and validate if link exists, else don't make one. 
-# probably best to just show last week's edition
+articles_objects.delete()  
 
 # For comparison
 keyword_set = set(keywords.keys())
 
-# Get links as a list. Note: in form [[link,link,...]]
+# Get links as a list. Note: in form [[link,link,...], ...]
 with open(os.path.join(os.path.dirname(__file__), '..', 'files/links.json'), 'r') as file:
     link_arrays = json.load(file) # imports json array as list
 
@@ -90,8 +89,6 @@ for link_array in link_arrays:
 
 print(" | Newspaper finished uploads successfully.")
 
-# implement query that shows all updated keyword array article lengths for log?
-
-# Operations done: query keywords, create dictionary, reset array, query articles and delete. for every single link: get keywords. if interesection, get info, query for all words in the common words and update all array
+# implement query that shows all updated keyword array article lengths for log
 
 sys.stdout.flush()
