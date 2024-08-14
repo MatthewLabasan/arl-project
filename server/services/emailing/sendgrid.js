@@ -69,6 +69,10 @@ const sendEmail = async () => {
 }
 
 // create message return that awaits email loop to finish. bc it only runs the email success after the await sgMail, so it allows emailing process finished to go before hand and return. need to handle that async allowing rest to follow
+// create unsubscribe feature
+// add link that will send correct user json
+// push prototype
+// update readme
 
 // src: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 const shuffle = (array) => {
