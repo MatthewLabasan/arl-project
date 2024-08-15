@@ -26,14 +26,30 @@ const sendEmail = async () => {
         // prepare sendgrid personalization json
         let personalizations = []
         for (const user of keyword.users) {
+            // create unsubAuthToken 
+            const unsubAuthToken = "NOTDONE"
+
             personalizations.push({ // push an object literal for json conversion
-                to: [{ "email": user.email }]
+                to: [
+                { 
+                    "email": user.email
+                }],
+                dynamic_template_data: {
+                    "unsubAuthToken": unsubAuthToken 
+                }
             })
         }
 
-        // randomize & shorten article counts
-        shuffle(keyword.articles)
-        limitArticles(keyword.articles)
+        // check if articles present and format for sending
+        if(keyword.articles.length == 0) {
+            var articles = "empty" // for sendgrid comparison
+            console.log(articles)
+        } else {
+            var articles = keyword.articles
+            // randomize & shorten article counts
+            shuffle(articles)
+            articles = limitArticles(keyword.articles)
+        }
 
         // send email
         try {
@@ -43,9 +59,15 @@ const sendEmail = async () => {
                 personalizations: personalizations,
                 dynamic_template_data: {
                     "subject": `This week's newsletter on "${keyword.word}"`,
-                    // get this iterations (keywords) articles
-                    "articles": keyword.articles, // change in dynamic template to print message below if nothing is in articles array!
-                    "noArticles": "Sorry! No articles have been found yet. Come back next week!"
+                    "articles": articles,
+                    "Sender_Name": "Matthew Labasan",
+                    "Sender_Address": "2800 Woodlawn Dr",
+                    "Sender_City": "Honolulu",
+                    "Sender_State": "HI",
+                    "Sender_Zip": "96822",
+                    "empty": "empty",
+                    "noArticles": "Your topic hasn't been implented yet or there are no new developments! Come back next week :)",
+                    "homepageURL": "http://localhost:5173/",  // update
                 }
             }
             console.log(msg)
@@ -68,12 +90,6 @@ const sendEmail = async () => {
     return message
 }
 
-// create message return that awaits email loop to finish. bc it only runs the email success after the await sgMail, so it allows emailing process finished to go before hand and return. need to handle that async allowing rest to follow
-// create unsubscribe feature
-// add link that will send correct user json
-// push prototype
-// update readme
-
 // src: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 const shuffle = (array) => {
     let currentIndex = array.length;
@@ -93,10 +109,20 @@ const shuffle = (array) => {
 
 const limitArticles = (articles) => {
     if(articles.length > 10) {
-        articles = articles.slice(10)
+        articles = articles.slice(0, 10)
     }
+    return articles
 }
 
 module.exports = {
     sendEmail
 }
+
+
+// to do: 
+// log error: create message return that awaits email loop to finish. bc it only runs the email success after the await sgMail, so it allows emailing process finished to go before hand and return. need to handle that async allowing rest to follow
+
+// create unsubscribe feature
+// add link that will send correct user json
+// push prototype
+// update readme

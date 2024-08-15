@@ -12,6 +12,9 @@ const { scheduleScrape } = require('./services/webscraper/webscraper')
 const { scheduleNewsletter } = require('./services/emailing/sendNewsletter') 
 const PORT = process.env.PORT || 3500
 
+// delete
+const { sendEmail } = require('./services/emailing/sendGrid') 
+
 const app = express();
 console.log(process.env.NODE_ENV)
 
@@ -32,7 +35,8 @@ app.use('/users', require('./routes/userRoutes'))
 scheduleScrape()
 
 // Emailer
-scheduleNewsletter()
+// scheduleNewsletter()
+sendEmail()
 
 // Last middleware to use
 app.use(errorHandler) 
