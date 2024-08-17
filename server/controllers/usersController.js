@@ -75,22 +75,26 @@ const updateUsers = asyncHandler(async(req, res) => {
         return res.status(400).json({ message: "No input provided."}) // request will be embedded with correct data 
     }
 
-    // grab from link
-    const keywordID = await Keyword.findOne(keyword.toLowerCase())._id
-    const userID = await User.findOne(unsubAuthToken)._id
+    // grab user info 
+    const keywordObject = await Keyword.findOne({ word: keyword })
+    const userObject = await User.findOne({ unsubAuthToken })
+    const keywordID = keywordObject._id
+    const userID = userObject._id
+    const email = userObject.email
 
     // remove instances & connections
     const existingUser = await User.updateOne({ _id: userID }, { $pull: { keywords: keywordID } })
     const existingWord = await Keyword.updateOne({ _id: keywordID }, { $pull: { users: userID } }) 
-    if(existingUser.matchedCount == 0) { // if not signed up
-        res.status(404).json({ message: `${email} not subscribed to ${keyword}` })
+    if(existingUser.matchedCount == 1) { 
+        res.status(404).json({ message: `${email} not subscribed to '${keyword}'.` })
     } else if (existingUser.modifiedCount == 1 && existingWord.modifiedCount == 1) {
         res.status(200).json({ message: `${email} unsubscribed from ${keyword}.` })
     } else {
         res.status(400).json({ message: `Unable to process request.`})
     }
 
-    //SOMETHING WRONG HERE
+    // IMPLEMENT SUB LOGGING
+    // something wrong with email sending. 123 got one of three while mjl2278 got three of three
 })
 
 // @desc Delete a user

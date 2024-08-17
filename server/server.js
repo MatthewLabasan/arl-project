@@ -36,7 +36,7 @@ scheduleScrape()
 
 // Emailer
 // scheduleNewsletter()
-sendEmail()
+// sendEmail()
 
 // Last middleware to use
 app.use(errorHandler) 

@@ -123,3 +123,10 @@ Got a test email to work. Had trouble with Dyanmic Template because I was not sa
 
 # 8/8/24
 Fixed SendGrid (Dynamic Template - data format was causing issues with dynamic template rendering) and cleaned up looping. Worked on logs and scheduling. Looking forward to finishing this then adding an unsubscribe API endpoint, then deploying!
+
+# 8/17/24
+Finished unsub page. Need to work on API, not registering correctly. 
+    // IMPLEMENT SUB LOGGING
+    // something wrong with email sending. 123 got one of three while mjl2278 got three of three
+    // something wrong with unsub too
+    
