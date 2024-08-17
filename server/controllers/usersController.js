@@ -73,13 +73,11 @@ const updateUsers = asyncHandler(async(req, res) => {
         return res.status(400).json({ message: "No input provided."}) // request will be embedded with correct data 
     }
 
+    // grab from link
     const keywordID = await Keyword.findOne(keyword.toLowerCase())._id
     const userID = await User.findOne(email)._id
 
-    // utilize updateOne, and modify keyword array
-        // if matchedCount == 0: return no user
-        // if modifiedCount == 1: return user updated
-        // else: return message error updating user.
+    // remove instances & connections
     const existingUser = await User.updateOne({ _id: userID }, { $pull: { keywords: keywordID } })
     const existingWord = await Keyword.updateOne({ _id: keywordID }, { $pull: { users: userID } }) 
     if(existingUser.matchedCount == 0) { // if not signed up
