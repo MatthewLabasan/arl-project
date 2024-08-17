@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler') 
 const User = require('../models/User')
 const Keyword = require('../models/Keyword')
+const crypto = require('crypto')
 
 // @desc Get all users
 // @route GET /users
@@ -15,7 +16,7 @@ const getAllUsers = asyncHandler(async(req, res) => {
 })
 
 // @desc Create new user
-// @route POST /article
+// @route POST /users
 // For subscribing / adding new words
 
 const createNewUsers = asyncHandler(async(req, res) => {
@@ -54,7 +55,8 @@ const createNewUsers = asyncHandler(async(req, res) => {
         userMessage = `Existing email ${email} subscribed to '${word}'.`
         message += userMessage
     } else { // create user
-        let userObject = User({ name, email, keywords: [keywordID] })
+        let unsubAuthToken = crypto.randomBytes(16).toString('hex')
+        let userObject = User({ name, email, keywords: [keywordID], unsubAuthToken })
         existingUser = await User.create(userObject) // existingUser set to new user
         userMessage = `${email} subscribed to '${word}'.`
         message += userMessage
@@ -65,17 +67,17 @@ const createNewUsers = asyncHandler(async(req, res) => {
 })
 
 // @desc Update a user
-// @route PATCH /keywords
+// @route PATCH /users
 // For unsubscribing
 const updateUsers = asyncHandler(async(req, res) => {
-    const {name, email, keyword} = req.body
-    if( !name || !email || !keyword ) {
+    const {keyword, unsubAuthToken} = req.body
+    if( !keyword || !unsubAuthToken ) {
         return res.status(400).json({ message: "No input provided."}) // request will be embedded with correct data 
     }
 
     // grab from link
     const keywordID = await Keyword.findOne(keyword.toLowerCase())._id
-    const userID = await User.findOne(email)._id
+    const userID = await User.findOne(unsubAuthToken)._id
 
     // remove instances & connections
     const existingUser = await User.updateOne({ _id: userID }, { $pull: { keywords: keywordID } })
@@ -87,10 +89,12 @@ const updateUsers = asyncHandler(async(req, res) => {
     } else {
         res.status(400).json({ message: `Unable to process request.`})
     }
+
+    //SOMETHING WRONG HERE
 })
 
 // @desc Delete a user
-// @route DELETE /keywords
+// @route DELETE /users
 // @access Private (not implemented yet)
 const deleteUsers = asyncHandler(async(req, res) => {
     res.status(405).json({ message: "Deleting users not implemented."}) // connect to email link

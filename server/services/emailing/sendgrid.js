@@ -26,16 +26,15 @@ const sendEmail = async () => {
         // prepare sendgrid personalization json
         let personalizations = []
         for (const user of keyword.users) {
-            // create unsubAuthToken 
-            const unsubAuthToken = "NOTDONE"
-
+            const unsubAuthToken = user.unsubAuthToken
             personalizations.push({ // push an object literal for json conversion
                 to: [
                 { 
                     "email": user.email
                 }],
                 dynamic_template_data: {
-                    "unsubAuthToken": unsubAuthToken 
+                    "unsubAuthToken": unsubAuthToken,
+                    "keyword": keyword.word
                 }
             })
         }

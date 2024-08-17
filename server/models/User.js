@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
         type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Keyword'}],
         required: true,
         default: []
+    },
+    unsubAuthToken: {
+        type: String,
+        required: true
     }
 })
 
