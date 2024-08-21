@@ -1,5 +1,11 @@
-# Specific Topic Email Generator
-_ARL Internship Project_: Application designed to automatically send emails throughout the week curated to a specific topic inputted when signing up.
+# SciByte: Personalized Research Delivered to Your Inbox
+
+# Table of Contents
+1. [Introduction](#introduction)
+
+# Introduction
+This project was developed to enhance research surveys. 
+_ARL Internship Project_: Application designed to automatically send emails once a week that are curated to a specific topic.
 
 Below are notes as I continue to work on this readme.
 ## Installation
@@ -18,6 +24,7 @@ __Installation__: From the terminal, run `npm install`.
     - use the curl to download necessary data for nlp (nltk) model
 
     - scipy and numpy versions that are compatible
+- SendGrid subscription and setup
 # Notes
 __Logs__: webscraperLog.log will indicate problems that may be occurring with your links, webscraper temp. files, or JSON file creation. 
 - Newspaper will continue to run on whatever JSON file is available, even if there was an error with Puppetter. Need to monitor logs to ensure puppeteer ran correctly, else reschedule and fix errors so that puppeteer can update JSON.
