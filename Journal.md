@@ -130,3 +130,10 @@ Finished unsub page. Need to work on API, not registering correctly.
     // something wrong with email sending. 123 got one of three while mjl2278 got three of three
     // something wrong with unsub too
     
+# 8/18/24
+Fixed unsub. Changed timing to .env use. Need to:
+- fix article dating and most recent sent
+- test unsub scenarios
+- test sub scenarios
+- send unsub confirm email
+- subscription log 
