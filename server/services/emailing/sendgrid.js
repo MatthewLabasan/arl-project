@@ -42,7 +42,6 @@ const sendEmail = async () => {
         // check if articles present and format for sending
         if(keyword.articles.length == 0) {
             var articles = "empty" // for sendgrid comparison
-            console.log(articles)
         } else {
             var articles = keyword.articles
             // randomize & shorten article counts
@@ -69,7 +68,6 @@ const sendEmail = async () => {
                     "homepageURL": "http://localhost:5173/",  // update
                 }
             }
-            console.log(msg)
             sgMail
                 .send(msg)
                 .then(() => {

@@ -85,16 +85,15 @@ const updateUsers = asyncHandler(async(req, res) => {
     // remove instances & connections
     const existingUser = await User.updateOne({ _id: userID }, { $pull: { keywords: keywordID } })
     const existingWord = await Keyword.updateOne({ _id: keywordID }, { $pull: { users: userID } }) 
-    if(existingUser.matchedCount == 1) { 
-        res.status(404).json({ message: `${email} not subscribed to '${keyword}'.` })
-    } else if (existingUser.modifiedCount == 1 && existingWord.modifiedCount == 1) {
+    if (existingUser.modifiedCount == 1 && existingWord.modifiedCount == 1) {
         res.status(200).json({ message: `${email} unsubscribed from ${keyword}.` })
+    } else if(existingUser.matchedCount == 1) { 
+        res.status(404).json({ message: `${email} not subscribed to '${keyword}'.` })
     } else {
         res.status(400).json({ message: `Unable to process request.`})
     }
 
     // IMPLEMENT SUB LOGGING
-    // something wrong with email sending. 123 got one of three while mjl2278 got three of three
 })
 
 // @desc Delete a user

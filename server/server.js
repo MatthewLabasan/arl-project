@@ -35,7 +35,7 @@ app.use('/users', require('./routes/userRoutes'))
 scheduleScrape()
 
 // Emailer
-// scheduleNewsletter()
+scheduleNewsletter()
 // sendEmail()
 
 // Last middleware to use

@@ -21,7 +21,7 @@ const sendNewsletter = async() => {
 
 const scheduleNewsletter = () => { 
     // I believe this runs on call stack, but we are calling async events. Once called, will leave.
-    const job = schedule.scheduleJob('0 41 * * * *', async function(){
+    const job = schedule.scheduleJob(process.env.EMAILER_TIME, async function(){
         await sendNewsletter()
     })
 }
