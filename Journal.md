@@ -140,3 +140,8 @@ Fixed unsub. Changed timing to .env use. Need to:
 
 # 8/22/24
 Added unsub email confirmation. Next, would like to create a demo button for recruiters then deploy.
+For demo button:
+Add button next to the subscribe button. "Demo Me*"
+    - this is a demo, meaning your data will not be saved. you will recieve a demo email on this topic
+Goes directly to sendgrid method, passing in the email and name and topic. Does not store user data.
+- Also, add when emails sent (every Wednesday)
