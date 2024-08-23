@@ -137,3 +137,6 @@ Fixed unsub. Changed timing to .env use. Need to:
 - test sub scenarios
 - send unsub confirm email
 - subscription log 
+
+# 8/22/24
+Added unsub email confirmation. Next, would like to create a demo button for recruiters then deploy.
