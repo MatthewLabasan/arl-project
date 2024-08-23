@@ -8,7 +8,7 @@ const StatusMessage = ({status, received}) => {
     return null
 }
 
-const RequestButton = () => {
+const UnsubButton = () => {
     const [message, setMessage] = useState('')
     const [status, setStatus] = useState('')
     const [received, setReceived] = useState(false)
@@ -26,7 +26,7 @@ const RequestButton = () => {
         try {
             const response = await fetch('http://localhost:3500/users', { 
                 method: 'PATCH',
-                headers: { "Content-Type": "application/json" }, // tells format of body
+                headers: { "Content-Type": "application/json" }, 
                 body: JSON.stringify(user) // turn object into string. payload
             })
             const json = await response.json()
@@ -58,4 +58,4 @@ const RequestButton = () => {
     }
 }
 
-export default RequestButton
+export default UnsubButton

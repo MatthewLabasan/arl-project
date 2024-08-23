@@ -4,7 +4,7 @@
 1. [Introduction](#introduction)
 
 # Introduction
-This project was developed to enhance research surveys. 
+This project was developed to enhance research surveys. <br>
 _ARL Internship Project_: Application designed to automatically send emails once a week that are curated to a specific topic.
 
 Below are notes as I continue to work on this readme.

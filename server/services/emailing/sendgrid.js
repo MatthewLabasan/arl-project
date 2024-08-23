@@ -65,7 +65,7 @@ const sendEmail = async () => {
                     "Sender_Zip": "96822",
                     "empty": "empty",
                     "noArticles": "Your topic hasn't been implented yet or there are no new developments! Come back next week :)",
-                    "homepageURL": "http://localhost:5173/",  // update
+                    "homepageURL": process.env.CLIENT_HOMEPAGE_URL,  // update
                 }
             }
             sgMail
@@ -91,14 +91,10 @@ const sendEmail = async () => {
 const shuffle = (array) => {
     let currentIndex = array.length;
   
-    // While there remain elements to shuffle...
     while (currentIndex != 0) {
-  
-      // Pick a remaining element...
       let randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-  
-      // And swap it with the current element.
+
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex], array[currentIndex]];
     }
@@ -111,8 +107,42 @@ const limitArticles = (articles) => {
     return articles
 }
 
+const sendUnsubEmail = async (email, keyword) => {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    let message = "[Unsubscribe]: "
+    // subscription message log not implemented yet
+    try {
+        const msg = {
+            to: email,
+            from: process.env.VERIFIED_SENDER_EMAIL,
+            templateId: process.env.UNSUB_TEMPLATE_ID,
+            dynamic_template_data: {
+                "subject": `You have unsubscribed from "${keyword}"`,
+                "keyword": keyword,
+                "Sender_Name": "Matthew Labasan",
+                "Sender_Address": "2800 Woodlawn Dr",
+                "Sender_City": "Honolulu",
+                "Sender_State": "HI",
+                "Sender_Zip": "96822",
+                "homepageURL": process.env.CLIENT_HOMEPAGE_URL,
+            }
+        }
+        sgMail
+            .send(msg)
+            .then(() => {
+                message += `"${email}" unsubscribed from "${keyword}" successfully.\n`
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    } catch (error) {
+        message += (`An unexpected error occurred when unsubscribing ${email} from ${keyword}: ${error}\n`)
+    }
+}
+
 module.exports = {
-    sendEmail
+    sendEmail,
+    sendUnsubEmail
 }
 
 

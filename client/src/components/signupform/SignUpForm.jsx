@@ -28,7 +28,7 @@ const SignUpForm = () => {
             })
             const json = await response.json()
             setReceived(true)
-            setStatus(json.userMessage + `\n Note: This is a demo and you will be unsubscribed after the first email.`)
+            setStatus(json.userMessage)
         } catch (error) {
             console.log(error.userMessage)
             setReceived(true)

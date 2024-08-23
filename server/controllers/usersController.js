@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler')
 const User = require('../models/User')
 const Keyword = require('../models/Keyword')
 const crypto = require('crypto')
+const { sendUnsubEmail } = require('../services/emailing/sendGrid')
 
 // @desc Get all users
 // @route GET /users
@@ -87,6 +88,7 @@ const updateUsers = asyncHandler(async(req, res) => {
     const existingWord = await Keyword.updateOne({ _id: keywordID }, { $pull: { users: userID } }) 
     if (existingUser.modifiedCount == 1 && existingWord.modifiedCount == 1) {
         res.status(200).json({ message: `${email} unsubscribed from ${keyword}.` })
+        sendUnsubEmail(email, keyword)
     } else if(existingUser.matchedCount == 1) { 
         res.status(404).json({ message: `${email} not subscribed to '${keyword}'.` })
     } else {

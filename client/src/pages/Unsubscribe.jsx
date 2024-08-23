@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import logo from '/logo.png'
-import RequestButton from '../components/buttons/RequestButton.jsx'
+import UnsubButton from '../components/buttons/UnsubButton.jsx'
 import './Home.css'
 
 const Unsubscribe = () => {
@@ -13,7 +13,7 @@ const Unsubscribe = () => {
           <img src={logo} className="logo" alt="Vite logo" />
         </a>
         <h1>We're sad to see you go!</h1>
-        <RequestButton></RequestButton>
+        <UnsubButton></UnsubButton>
       </section>
     </>
   )
