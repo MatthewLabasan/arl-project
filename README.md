@@ -14,7 +14,7 @@ This README.md is under construction!
 This project was developed to enhance research surveys at the Applied Research Laboratory as part of my summer internship. It is a webscraping application designed to automatically send emails once a week containing curated research on a specific topic. See a demo and the research paper (here)[https://capable-cardigan-938.notion.site/SciByte-6a4464f62c414841809daa8dbe0d8c4e]!
 
 ### Software Architecture Diagram
-<img alt="Software Architecture Diagram" src="server/public/architecture-diagram.png" width="1200" height="800">
+<img alt="Software Architecture Diagram" src="server/public/architecture-diagram.png" width="1000" height="450">
 
 # Getting Started
 ## Prerequistes: 
@@ -44,10 +44,10 @@ This project was developed to enhance research surveys at the Applied Research L
 # Program Use
 ## Sample Results
 ### Homepage
-<img alt="Homepage" src="server/public/sample-homepage.png" width="1200" height="800">
+<img alt="Homepage" src="server/public/sample-homepage.png" width="400" height="600">
 
 ### Sample Emails
-<img alt="Sample Emails" src="server/public/sample-email.png" width="1200" height="800">
+<img alt="Sample Emails" src="server/public/sample-email.png" width="1000" height="450">
 
 *Left*: Newsletter, *Right*: Unsubscription Confirmation
 
