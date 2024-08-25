@@ -145,3 +145,10 @@ Add button next to the subscribe button. "Demo Me*"
     - this is a demo, meaning your data will not be saved. you will recieve a demo email on this topic
 Goes directly to sendgrid method, passing in the email and name and topic. Does not store user data.
 - Also, add when emails sent (every Wednesday)
+
+# 8/23/24
+- Updated readme
+- Documented methods in code
+- Made email sender info more secure
+
+- Next: demo button on home page then deploy
