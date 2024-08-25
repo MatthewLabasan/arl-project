@@ -43,13 +43,14 @@ This project was developed to enhance research surveys at the Applied Research L
 
 # Program Use
 ## Sample Results
-### Homepage
+### Client Views
 <img alt="Homepage" src="server/public/sample-homepage.png" width="1000" height="550">
+*Left*: Homepage, *Right*: Unsubscription Confirmation
 
 ### Sample Emails
 <img alt="Sample Emails" src="server/public/sample-email.png" width="1000" height="550">
 
-*Left*: Newsletter, *Right*: Unsubscription Confirmation
+*Left*: Newsletter, *Right*: Unsubscription Email
 
 ## Adding New Sources
 You will want to add new sources to scrape from as users continue to sign up for new keywords. To do this, please ensure that the sources you use fill the following prerequisites:
