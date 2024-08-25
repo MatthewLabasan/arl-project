@@ -11,43 +11,43 @@ This README.md is under construction!
     - [Adding New Sources](#adding-new-sources)
 
 # Introduction
-This project was developed to enhance research surveys at the Applied Research Laboratory as part of my summer internship. It is a webscraping application designed to automatically send emails once a week containing curated research on a specific topic. See a demo and the research paper (here)[https://capable-cardigan-938.notion.site/SciByte-6a4464f62c414841809daa8dbe0d8c4e]!
+This project was developed to enhance research surveys at the Applied Research Laboratory as part of my summer internship. It is a webscraping application designed to automatically send emails once a week containing curated research on a specific topic. See a demo and the research paper [here](https://capable-cardigan-938.notion.site/SciByte-6a4464f62c414841809daa8dbe0d8c4e)!
 
 ### Software Architecture Diagram
-<img alt="Software Architecture Diagram" src="server/public/architecture-diagram.png" width="1000" height="450">
+<img alt="Software Architecture Diagram" src="server/public/architecture-diagram.png" width="1000" height="525">
 
 # Getting Started
 ## Prerequistes: 
-    1. Python 3.8 - 3.12, Node.js and npm
-        - __Note__: This program utilizes Python libraries, so ensure that you select the Python interpreter that `pip` installs packages to. To do this in VS Code, enter the Command Palette at the top of the window, and type `>Python: Select Interpreter`
-    2. Install Newspaper3k Library (Official Guide Here)[https://newspaper.readthedocs.io/en/latest/]
-        ```
-        $ brew install libxml2 libxslt
-        $ brew install libtiff libjpeg webp little-cms2
-        $ pip3 install newspaper3k
-        $ curl https://raw.githubusercontent.com/codelucas/newspaper/master/download_corpora.py | python3
-        $ pip3 install newspaper3k
-        $ curl https://raw.githubusercontent.com/codelucas/newspaper/master/download_corpora.py | python3
-        ```
-        - Note: Newspaper3k utilizes NLTK, whice requires Python versions 3.8, 3.9, 3.10, 3.11, or 3.12. You may need to ensure that your scipy and numpy versions that are compatible.
-    3. Set up your (SendGrid)[https://sendgrid.com/en-us] Account and Dynamic Template. 
-        - Once your account is setup, navigate to 'Email API' -> 'Dynamic Templates' -> 'Create Dynamic Template'
-        - Feel free to utilize the files located in `server/services/emailing/sampleTemplates` for your templates.
-    4. Create and fill in your `.env` file using the `.env.example` file
+1. Python 3.8 - 3.12, Node.js and npm
+    - __Note__: This program utilizes Python libraries, so ensure that you select the Python interpreter that `pip` installs packages to. To do this in VS Code, enter the Command Palette at the top of the window, and type `>Python: Select Interpreter`
+2. Install Newspaper3k Library (Official Guide Here)[https://newspaper.readthedocs.io/en/latest/]
+    ```
+    $ brew install libxml2 libxslt
+    $ brew install libtiff libjpeg webp little-cms2
+    $ pip3 install newspaper3k
+    $ curl https://raw.githubusercontent.com/codelucas/newspaper/master/download_corpora.py | python3
+    $ pip3 install newspaper3k
+    $ curl https://raw.githubusercontent.com/codelucas/newspaper/master/download_corpora.py | python3
+    ```
+    - Note: Newspaper3k utilizes NLTK, whice requires Python versions 3.8, 3.9, 3.10, 3.11, or 3.12. You may need to ensure that your scipy and numpy versions that are compatible.
+3. Set up your (SendGrid)[https://sendgrid.com/en-us] Account and Dynamic Template. 
+    - Once your account is setup, navigate to 'Email API' -> 'Dynamic Templates' -> 'Create Dynamic Template'
+    - Feel free to utilize the files located in `server/services/emailing/sampleTemplates` for your templates.
+4. Create and fill in your `.env` file using the `.env.example` file
 ## Installation: 
-    1. Clone this repository to your system. In the console, type in `git clone https://github.com/MatthewLabasan/arl-project.git`
-    2. Create and fill in your `.env` file using the `.env.example` file
-    3. From the terminal, `cd` to the `client` folder and run `npm install`. Do the same for the `server` folder.
-    4. Add new website sources following the directions in the next section. Sample websites are already in place if you would like to use them.
-    4. Run `npm run dev` in the `client` and `server` folder to start the program! 
+1. Clone this repository to your system. In the console, type in `git clone https://github.com/MatthewLabasan/arl-project.git`
+2. Create and fill in your `.env` file using the `.env.example` file
+3. From the terminal, `cd` to the `client` folder and run `npm install`. Do the same for the `server` folder.
+4. Add new website sources following the directions in the next section. Sample websites are already in place if you would like to use them.
+5. Run `npm run dev` in the `client` and `server` folder to start the program! 
 
 # Program Use
 ## Sample Results
 ### Homepage
-<img alt="Homepage" src="server/public/sample-homepage.png" width="400" height="600">
+<img alt="Homepage" src="server/public/sample-homepage.png" width="475" height="600">
 
 ### Sample Emails
-<img alt="Sample Emails" src="server/public/sample-email.png" width="1000" height="450">
+<img alt="Sample Emails" src="server/public/sample-email.png" width="1000" height="550">
 
 *Left*: Newsletter, *Right*: Unsubscription Confirmation
 
