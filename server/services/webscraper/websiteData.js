@@ -36,7 +36,7 @@ websiteData.push('https://www.sciencedaily.com/news/computers_math/robotics/')
 websiteData.push('https://www.sciencedaily.com')
 websiteData.push('#featured_blurbs > div:nth-child(n) > div > a')
 
-// add new websites here
+// ADD NEW WEBSITES HERE
 
 // broken link test
 // websiteData.push('https://www.kasjkdsadasdjsadskjkscjkxajj.com/')

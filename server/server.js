@@ -8,13 +8,14 @@ const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
 const { logger } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler')
-const { scrapePuppeteer } = require('./services/webscraper/webscraper/jsScraper/scrapePuppeteer') // for testing
+const { scrapePuppeteer } = require('./services/webscraper/jsScraper/scrapePuppeteer') // for testing
+const { websiteData } = require('./services/webscraper/websiteData') // for testing
 const { scheduleScrape } = require('./services/webscraper/webscraper')
 const { scheduleNewsletter } = require('./services/emailing/sendNewsletter') 
 const PORT = process.env.PORT || 3500
 
 // delete
-const { sendEmail } = require('./services/emailing/sendGrid') 
+// const { sendEmail } = require('./services/emailing/sendGrid') // delete
 
 const app = express();
 console.log(process.env.NODE_ENV)
@@ -32,17 +33,16 @@ app.use('/keywords', require('./routes/keywordRoutes'))
 app.use('/articles', require('./routes/articleRoutes'))
 app.use('/users', require('./routes/userRoutes'))
 
-// CSS Selector Testing: See documentation for details
-// scrapePuppeteer()
+// CSS Selector Testing: See documentation for details.
+// scrapePuppeteer(websiteData)
 
 // Webscraper & Scheduler
 scheduleScrape()
 
 // Emailer
 scheduleNewsletter()
-sendEmail()
+// sendEmail() // delete
 
-// Last middleware to use
 app.use(errorHandler) 
 
 mongoose.connection.once('open', () => {

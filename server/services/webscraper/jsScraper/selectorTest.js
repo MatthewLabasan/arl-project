@@ -14,6 +14,7 @@ const selectorTest = async(arrayOfLinks) => {
     } catch (err) {
         console.log(err)
     }
+    console.log("Selector Test Complete. Please check /server/services/webscraiper/files/links.txt.")
 }
 
 module.exports = { selectorTest }
