@@ -44,7 +44,7 @@ This project was developed to enhance research surveys at the Applied Research L
 # Program Use
 ## Sample Results
 ### Homepage
-<img alt="Homepage" src="server/public/sample-homepage.png" width="475" height="600">
+<img alt="Homepage" src="server/public/sample-homepage.png" width="1000" height="550">
 
 ### Sample Emails
 <img alt="Sample Emails" src="server/public/sample-email.png" width="1000" height="550">
@@ -53,10 +53,10 @@ This project was developed to enhance research surveys at the Applied Research L
 
 ## Adding New Sources
 You will want to add new sources to scrape from as users continue to sign up for new keywords. To do this, please ensure that the sources you use fill the following prerequisites:
-    - Each source should be websites that have a blogpost / news style, such as https://www.theverge.com/. 
-    - Only website's with <a> href's that are directories (ex. `/topic/article123`) and not full links (ex. `www.website/topic/article123`) are supported.
-        - To check this, use the Chrome Inspector tool and hover over a link.
-    - Be careful with scraping from side bars, the webscraper may not be able to find it.
+- Each source should be websites that have a blogpost / news style, such as [this](https://www.theverge.com/). 
+- Only website's with <a> href's that are directories (ex. `/topic/article123`) and not full links (ex. `www.website/topic/article123`) are supported.
+    - To check this, use the Chrome Inspector tool and hover over a link.
+- Be careful with scraping from side bars, the webscraper may not be able to find it.
 
 Now, follow the directions below for guidance:
 1. Navigate to `server/server.js` and comment out the following lines of code:
@@ -91,17 +91,17 @@ Now, follow the directions below for guidance:
     - You will see `Puppeteer started successfully.` in your console. Wait for `Selector Test Complete. Please check /server/services/webscraiper/files/links.txt.` to appear.
     - Navigate to that the `links.txt` file and scroll to the bottom to check for your desired links. If your desired links do not appear, your CSS selector is most likely incorrect. See [CSS Selector docs](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors) for help. Be sure to follow the CSS selector guidelines in Step 2.
 4. Once done undo the modifcations to the server.js file done in Step 1 and Step 3. Your code should look like this:
-```javascript
-// CSS Selector Testing: See documentation for details.
-// scrapePuppeteer(websiteData)
+    ```javascript
+    // CSS Selector Testing: See documentation for details.
+    // scrapePuppeteer(websiteData)
 
-// Webscraper & Scheduler
-scheduleScrape()
+    // Webscraper & Scheduler
+    scheduleScrape()
 
-// Emailer
-scheduleNewsletter()
+    // Emailer
+    scheduleNewsletter()
 
-```
+    ```
 5. Commit changes and push to production if necessary.
 
 # Notes
