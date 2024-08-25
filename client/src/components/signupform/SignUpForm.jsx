@@ -1,13 +1,9 @@
 import { useState } from "react"
 import './SignUpForm.css'
 
-const StatusMessage = ({status, received}) => {
-    if(received) {
-        return <p>{status}</p>
-    } 
-    return null
-}
-
+/** 
+* Sign up form for new users. Sends a POST request to the 'users' API.
+*/
 const SignUpForm = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -79,6 +75,16 @@ const SignUpForm = () => {
             <StatusMessage status={status} received={received}></StatusMessage>
         </section>
     )
+}
+
+/** 
+* Returns status of subscribe POST request once it is complete
+*/
+const StatusMessage = ({status, received}) => {
+    if(received) {
+        return <p>{status}</p>
+    } 
+    return null
 }
 
 export default SignUpForm

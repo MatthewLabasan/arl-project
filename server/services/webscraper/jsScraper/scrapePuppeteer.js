@@ -4,9 +4,10 @@ const path = require('path')
 const { selectorTest } = require('./selectorTest')
 
 /** 
- * Webscrapes specific websites for new article links. If a new website is to be scraped, add it to websiteData.js
- * Creates JSON file for scrapeNewspaper.py
- * @returns message log string
+* Webscrapes specific websites for new article links.
+* Creates JSON file for scrapeNewspaper.py
+* @param {Array} websiteData - Array containing website links and respective CSS selectors.
+* @returns {string} Message log string
 */
 const scrapeLinks = async(websiteData) => { 
     let message = "Webscraper log below:\n[Puppeteer] Internal Log: "
@@ -55,6 +56,11 @@ const scrapeLinks = async(websiteData) => {
     return message
 }
 
+/** 
+* Handles scrapeLinks and add's additional formatting for log information.
+* @param {Array} websiteData - Array containing website links and respective CSS selectors.
+* @returns {string} Further processed message log string.
+*/
 const scrapePuppeteer = async(websiteData) => { 
     let message
     try {

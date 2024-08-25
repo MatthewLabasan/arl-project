@@ -1,3 +1,19 @@
+"""
+This script processes a JSON file of article links and generates article information for emailing.
+Article information will be pushed to MongoDB database following MongoEngine schemas defined in 'server/services/webscraper/pyScraper/models'.
+These schemas are the same as the mongoose schemas present in 'server/models'.
+
+Usage:
+    Called within 'server/services/webscraper/webscraper.js' through a child function. Otherwise, run 'python scrapeNewspaper.py'
+
+Notes:
+    - Ensure that the links.json file is present in 'server/services/webscraper/files'
+
+Author: Matthew Labasan
+Date: August 24, 2024
+Version: 1.0
+"""
+
 from dotenv import load_dotenv
 import mongoengine
 from models import *

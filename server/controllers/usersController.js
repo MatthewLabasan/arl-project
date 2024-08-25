@@ -8,24 +8,18 @@ const { sendUnsubEmail } = require('../services/emailing/sendGrid')
 // @route GET /users
 // @access Private (not implemented yet)
 const getAllUsers = asyncHandler(async(req, res) => {
-    // const users = await User.find()
-    // if(!users) {
-    //     res.status(400).json({ message: "No users."})
-    // }
-    // res.json(users)
     res.status(405).json({ message: "Viewing all users not allowed."})
 })
 
 // @desc Create new user
 // @route POST /users
-// For subscribing / adding new words
-
+// For subscribing handling
 const createNewUsers = asyncHandler(async(req, res) => {
     let message
     let userMessage
     const {name, email, keyword} = req.body
-    if( !name || !email || !keyword ) {
-        return res.status(400).json({ message: "No input provided.", userMessage: "No input provided."}) // form will have checked for correct formatting
+    if( !name || !email || !keyword ) { // form checks for correct formatting
+        return res.status(400).json({ message: "No input provided.", userMessage: "No input provided."}) 
     }
 
     // check if keyword is present in db
@@ -42,7 +36,6 @@ const createNewUsers = asyncHandler(async(req, res) => {
         message = `New keyword added: '${word}'. ID:${keywordID}. `
     }
 
-    // query v1
     // check if already subscribed
     var existingUser = await User.findOne({email, keywords: keywordID})
     if (existingUser) {
@@ -52,10 +45,10 @@ const createNewUsers = asyncHandler(async(req, res) => {
     }
     // check if user prev. signed up, else create user
     var existingUser = await User.findOneAndUpdate({ email }, { $push: { keywords: keywordID }}, { new: true }) // appends new keyword
-    if(existingUser) { // if prev. signed up
+    if(existingUser) { 
         userMessage = `Existing email ${email} subscribed to '${word}'.`
         message += userMessage
-    } else { // create user
+    } else { 
         let unsubAuthToken = crypto.randomBytes(16).toString('hex')
         let userObject = User({ name, email, keywords: [keywordID], unsubAuthToken })
         existingUser = await User.create(userObject) // existingUser set to new user
@@ -69,11 +62,11 @@ const createNewUsers = asyncHandler(async(req, res) => {
 
 // @desc Update a user
 // @route PATCH /users
-// For unsubscribing
+// For unsubscribing from keywords
 const updateUsers = asyncHandler(async(req, res) => {
-    const {keyword, unsubAuthToken} = req.body
+    const { keyword, unsubAuthToken } = req.body
     if( !keyword || !unsubAuthToken ) {
-        return res.status(400).json({ message: "No input provided."}) // request will be embedded with correct data 
+        return res.status(400).json({ message: "No input provided."})
     }
 
     // grab user info 
@@ -95,14 +88,14 @@ const updateUsers = asyncHandler(async(req, res) => {
         res.status(400).json({ message: `Unable to process request.`})
     }
 
-    // IMPLEMENT SUB LOGGING
+    // TO DO: Implement subscription logging
 })
 
 // @desc Delete a user
 // @route DELETE /users
 // @access Private (not implemented yet)
 const deleteUsers = asyncHandler(async(req, res) => {
-    res.status(405).json({ message: "Deleting users not implemented."}) // connect to email link
+    res.status(405).json({ message: "Deleting users not implemented."})
 })
 
 module.exports = {

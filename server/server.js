@@ -7,7 +7,8 @@ const cookieParser = require('cookie-parser');
 const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
 const { logger } = require('./middleware/logger');
-const errorHandler = require('./middleware/errorHandler') // cannot destructure because we are asking app to use this file
+const errorHandler = require('./middleware/errorHandler')
+const { scrapePuppeteer } = require('./services/webscraper/webscraper/jsScraper/scrapePuppeteer') // for testing
 const { scheduleScrape } = require('./services/webscraper/webscraper')
 const { scheduleNewsletter } = require('./services/emailing/sendNewsletter') 
 const PORT = process.env.PORT || 3500
@@ -30,6 +31,9 @@ app.use('/', require('./routes/root')) // notice import is inside
 app.use('/keywords', require('./routes/keywordRoutes'))
 app.use('/articles', require('./routes/articleRoutes'))
 app.use('/users', require('./routes/userRoutes'))
+
+// CSS Selector Testing: See documentation for details
+// scrapePuppeteer()
 
 // Webscraper & Scheduler
 scheduleScrape()

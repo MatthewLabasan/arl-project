@@ -1,12 +1,16 @@
 const Keyword = require('../models/Keyword')
 const Article = require('../models/Article')
-const asyncHandler = require('express-async-handler') // push errors to default error handler
+const asyncHandler = require('express-async-handler') // pushes errors to default error handler
+
+/** 
+* This API is not in use by any functions. Keyword document creation is handled in 'usersController.js'
+*/
 
 // @desc Get all keywords
 // @route GET /keywords
 // @access Private (not implemented yet)
 const getAllKeywords = asyncHandler(async(req, res) => {
-    const keywords = await Keyword.find() // .lean() if don't want actual objects. we want actual objects so we can modify them
+    const keywords = await Keyword.find() // .lean() if don't want actual objects
     if (!keywords) {
         return res.status(400).json({ message: "No keywords." })
     }
@@ -17,20 +21,20 @@ const getAllKeywords = asyncHandler(async(req, res) => {
 // @route POST /keywords
 // @access Private (not implemented yet)
 const createNewKeyword = asyncHandler(async(req, res) => {
-    const { word } = req.body // dont' need array, default to nothing
+    const { word } = req.body 
 
     // confirm data
     if(!word || typeof word !== 'string' || word.includes(' ')) {
-        return res.status(400).json({ message: "Invalid keyword data or none provided." }) // send to user: single words & no spaces
+        return res.status(400).json({ message: "Invalid keyword data or none provided." }) 
     }
 
     // normalize data 
     word.toLowerCase()
 
-    // check for duplicate. note shorthand, if variable is same name as what we are searching for
-    const duplicate = await Keyword.findOne( { word }).lean().exec() 
+    // check for duplicate.
+    const duplicate = await Keyword.findOne( { word } ).lean().exec() 
     if(duplicate) {
-        return res.status(400).json({ message: "Keyword already implemented."}) // though, return visual success for user
+        return res.status(400).json({ message: "Keyword already implemented."}) 
     }
 
     // push object

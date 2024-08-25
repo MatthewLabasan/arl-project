@@ -1,7 +1,7 @@
-const mongoose = require('mongoose') // this handles connection
+const mongoose = require('mongoose')
 const { logEvents } = require('../middleware/logger')
 
-const connectDB = async() => { // want asyn to do in bg while everything else starts up
+const connectDB = async() => {
     try {
         await mongoose.connect(process.env.DATABASE_URI)
     } catch (err) {

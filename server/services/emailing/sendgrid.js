@@ -1,6 +1,10 @@
 const Keyword = require('../../models/Keyword') 
 const sgMail = require('@sendgrid/mail')
 
+/** 
+* Sends mass email to everyone subscribed using SendGrid API.
+* Emails sent in masses, one keyword at a time.
+*/
 const sendEmail = async () => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
     let message = "[Newsletter] Internal Log: "
@@ -23,11 +27,11 @@ const sendEmail = async () => {
     
     // email each keyword
     for (const keyword of keywords) {
-        // prepare sendgrid personalization json
+        // prepare sendgrid personalization json. takes an array of json info for each user
         let personalizations = []
         for (const user of keyword.users) {
             const unsubAuthToken = user.unsubAuthToken
-            personalizations.push({ // push an object literal for json conversion
+            personalizations.push({ 
                 to: [
                 { 
                     "email": user.email
@@ -41,7 +45,7 @@ const sendEmail = async () => {
 
         // check if articles present and format for sending
         if(keyword.articles.length == 0) {
-            var articles = "empty" // for sendgrid comparison
+            var articles = "empty" // for sendgrid template comparison
         } else {
             var articles = keyword.articles
             // randomize & shorten article counts
@@ -65,7 +69,7 @@ const sendEmail = async () => {
                     "Sender_Zip": "96822",
                     "empty": "empty",
                     "noArticles": "Your topic hasn't been implented yet or there are no new developments! Come back next week :)",
-                    "homepageURL": process.env.CLIENT_HOMEPAGE_URL,  // update
+                    "homepageURL": process.env.CLIENT_HOMEPAGE_URL, 
                 }
             }
             sgMail
@@ -87,7 +91,11 @@ const sendEmail = async () => {
     return message
 }
 
-// src: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+/** 
+* Function to shuffle an array of articles for better source coverage.
+* @param {Array} array - array of articles to be shuffled in place.
+* Source - https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+*/
 const shuffle = (array) => {
     let currentIndex = array.length;
   
@@ -100,6 +108,11 @@ const shuffle = (array) => {
     }
 }
 
+/** 
+* Function to limit articles shown to 10.
+* @param {Array} articles - Array of articles.
+* @return {Array} New shorter array of articles. 
+*/
 const limitArticles = (articles) => {
     if(articles.length > 10) {
         articles = articles.slice(0, 10)
@@ -107,10 +120,17 @@ const limitArticles = (articles) => {
     return articles
 }
 
+/** 
+* Sends SendGrid email confirming that user has been unsubscribed. 
+* Called in 'usersController.js' when the PATCH method for 'users' is successful in unsubscribing.
+* @param {string} email - Email of the user passed in by PATCH request
+* @param {string} keyword - Keyword of the user passed in by PATCH request
+*/
 const sendUnsubEmail = async (email, keyword) => {
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
     let message = "[Unsubscribe]: "
     // subscription message log not implemented yet
+
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
     try {
         const msg = {
             to: email,
@@ -147,7 +167,8 @@ module.exports = {
 
 
 // to do: 
-// log error: create message return that awaits email loop to finish. bc it only runs the email success after the await sgMail, so it allows emailing process finished to go before hand and return. need to handle that async allowing rest to follow
+// log error: create message return that awaits email loop to finish. bc it only runs the email success after the await sgMail, 
+// so it allows emailing process finished to go before hand and return. need to handle that async allowing rest to follow
 
 // create unsubscribe feature
 // add link that will send correct user json

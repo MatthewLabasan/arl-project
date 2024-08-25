@@ -1,13 +1,10 @@
 import { useState } from "react"
 import './RequestButton.css'
 
-const StatusMessage = ({status, received}) => {
-    if(received) {
-        return <p>{status}</p>
-    } 
-    return null
-}
-
+/** 
+* Button for unsubscribing. Sends PATCH request to 'users' API, removing keywordID from user and userID from keyword.
+* Will successfully PATCH if the URL contains the following queries: keyword=<keyword>&unsubAuthToken=<token>
+*/
 const UnsubButton = () => {
     const [message, setMessage] = useState('')
     const [status, setStatus] = useState('')
@@ -27,7 +24,7 @@ const UnsubButton = () => {
             const response = await fetch('http://localhost:3500/users', { 
                 method: 'PATCH',
                 headers: { "Content-Type": "application/json" }, 
-                body: JSON.stringify(user) // turn object into string. payload
+                body: JSON.stringify(user) // turn object into string
             })
             const json = await response.json()
             setReceived(true)
@@ -56,6 +53,16 @@ const UnsubButton = () => {
             </section>
         )
     }
+}
+
+/** 
+* Returns status of unsub PATCH request once it is complete
+*/
+const StatusMessage = ({status, received}) => {
+    if(received) {
+        return <p>{status}</p>
+    } 
+    return null
 }
 
 export default UnsubButton

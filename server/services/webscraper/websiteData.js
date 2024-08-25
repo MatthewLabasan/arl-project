@@ -1,5 +1,6 @@
 /**
- * Holds the website link and CSS selector that will be used for the webscraper. 
+ * ADD NEW WEBSITES HERE!
+ * Holds the website link and CSS selector (for article selection) that will be used for the Puppeteer webscraper. 
  * To see if CSS selector works, run webscraper.js and check ./files/links.txt for the desired links at the bottom.
  * Notes: Ensure that the CSS selector ends in the 'a' element. Ex: "div.summary-list__items > div:nth-child(n) > a"
  *        The CSS selector must be common to ensure all desired links are scraped. 
@@ -46,6 +47,16 @@ module.exports = {
     websiteData 
 }
 
+
+
+
+
+
+
+
+
+
+// NOTES
 // would it be better to make this a static document? 
 // how can we handle websites where the css selector wil grab links to the home page? this creates excess data we don't need
 // how can we handle websites where the a attribute holds the entire link, rather than a directory? work around right now: don't

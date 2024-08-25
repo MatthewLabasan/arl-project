@@ -9,6 +9,10 @@ const execFile = util.promisify(require('node:child_process').execFile); // prom
 let message = ''
 let pythonPath = path.join(__dirname, "pyScraper/scrapeNewspaper.py")
 
+/** 
+* Calls child process to execute scrapeNewspaper.py for the Newspaper3k webscraper.
+* @return {string} Result of the process to be logged.
+*/
 const newspaperAsync = async() => { 
     let newspaperMessage = "[Newspaper] Internal Log: " // move to python
     try { 
@@ -20,6 +24,10 @@ const newspaperAsync = async() => {
     return newspaperMessage
 }
 
+/** 
+* Handles calling both the Puppeteer and Newspaper3k webscrapers.
+* Logs down webscraping process information in webscrapeLog.log
+*/
 const webscraper = async() => { 
     console.log("Webscraper running...")
     try {
@@ -39,6 +47,9 @@ const webscraper = async() => {
     } 
 }
 
+/** 
+* Schedules webscraper. Timing can be adjusted in the .env file.
+*/
 const scheduleScrape = () => { 
     // I believe this runs on call stack, but we are calling async events. Once called, will leave.
     const job = schedule.scheduleJob(process.env.WEBSCRAPER_TIME, async function(){
