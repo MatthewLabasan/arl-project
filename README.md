@@ -45,6 +45,7 @@ This project was developed to enhance research surveys at the Applied Research L
 ## Sample Results
 ### Client Views
 <img alt="Homepage" src="server/public/sample-homepage.png" width="1000" height="550">
+
 *Left*: Homepage, *Right*: Unsubscription Confirmation
 
 ### Sample Emails
