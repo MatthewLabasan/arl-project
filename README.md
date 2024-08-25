@@ -11,7 +11,7 @@ This README.md is under construction!
     - [Adding New Sources](#adding-new-sources)
 
 # Introduction
-This project was developed to enhance research surveys at the Applied Research Laboratory as part of my summer internship. It is a webscraping application designed to automatically send emails once a week containing curated research on a specific topic. See a demo and the research paper <a href="https://capable-cardigan-938.notion.site/SciByte-6a4464f62c414841809daa8dbe0d8c4e" target="_blank">here!</a>
+This project was developed to enhance research surveys at the Applied Research Laboratory as part of my summer internship. It is a webscraping application designed to automatically send emails once a week containing curated research on a specific topic. See a demo and the research paper [here](https://capable-cardigan-938.notion.site/SciByte-6a4464f62c414841809daa8dbe0d8c4e)!
 
 ### Software Architecture Diagram
 <img alt="Software Architecture Diagram" src="server/public/architecture-diagram.png" width="1000" height="525">
