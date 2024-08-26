@@ -8,6 +8,7 @@ This README.md is under construction!
     - [Installation](#installation)
 3. [Program Use](#program-use)
     - [Sample Results](#sample-results)
+    - [Custom Deployment](#custom-deployment)
     - [Adding New Sources](#adding-new-sources)
 
 # Introduction
@@ -39,9 +40,9 @@ This project was developed to enhance research surveys at the Applied Research L
 2. Create and fill in your `.env` file using the `.env.example` file
 3. From the terminal, `cd` to the `client` folder and run `npm install`. Navigate to the `server` folder and run `npm install && pip install -r requirements.txt`
 4. Add new website sources following the directions in the next section. Sample websites are already in place if you would like to use them.
-5. Run `npm run dev` in the `client` and `server` folder to start the program! 
+5. Run `npm start` in the `client` and `server` folder to start the program! 
 
-# Program Use
+# Program Use & Deployment
 ## Sample Results
 ### Client Views
 <img alt="Homepage" src="server/public/sample-homepage.png" width="1000" height="550">
@@ -52,6 +53,9 @@ This project was developed to enhance research surveys at the Applied Research L
 <img alt="Sample Emails" src="server/public/sample-email.png" width="1000" height="550">
 
 *Left*: Newsletter, *Right*: Unsubscription Email
+
+## Custom Deployment
+To deploy the client, you will need to create an image due to the external system level dependencies needed by Newspaper3k. You can use [Docker](https://www.docker.com/get-started/) to assist this, or use a deployment service such as [Heroku](https://devcenter.heroku.com/articles/buildpacks) that has built in system dependency management.
 
 ## Adding New Sources
 You will want to add new sources to scrape from as users continue to sign up for new keywords. To do this, please ensure that the sources you use fill the following prerequisites:

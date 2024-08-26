@@ -158,3 +158,22 @@ Goes directly to sendgrid method, passing in the email and name and topic. Does 
 - render.com has 500mb ram usage, not sure if webscraper is too much.
 - if want to deploy as a sample, will need to just create a "send me a demo" button.
 - though, if webscraping is limited for my own topics, should be fine for both.
+
+- for deployment, 
+    - question on system wide libraires through brew? need to use imaging / containerization: docker or use something like heroku
+    - mongodb how to white list ip?
+
+    - if i want for just viewing:
+        - best to run webscraper locally to update articles every now and then
+        - have a demo button rather than a sign up button that will send them an email immediately by routing the button to a getEmail thing.
+        - that way, we can run this server locally to just update articles, then allow demo emails to be sent with the unsub button.
+    
+    - if i want for real use:
+        - use heroku pro through github edu
+        - or learn how to use docker, containerize for render.com, then disable webscraping and run webscraper locally
+
+    - from here on, i will have two branches: one for demo and one for main real use
+        - demo:
+            - create a sendDemoEmail method that iterates through articles but doesnt need a for every keyword. 
+            - will just grab keyword and email from request, pass it to API, which will then use that to send.
+            - will need to change button to "demo" and include a list of supported words

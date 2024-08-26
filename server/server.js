@@ -14,8 +14,8 @@ const { scheduleScrape } = require('./services/webscraper/webscraper')
 const { scheduleNewsletter } = require('./services/emailing/sendNewsletter') 
 const PORT = process.env.PORT || 3500
 
-// delete
-// const { sendEmail } = require('./services/emailing/sendgrid') // delete
+// for testing -- delete
+// const { sendEmail } = require('./services/emailing/sendgrid') 
 
 const app = express();
 console.log(process.env.NODE_ENV)
