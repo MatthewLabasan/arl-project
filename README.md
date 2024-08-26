@@ -37,7 +37,7 @@ This project was developed to enhance research surveys at the Applied Research L
 ## Installation: 
 1. Clone this repository to your system. In the console, type in `git clone https://github.com/MatthewLabasan/arl-project.git`
 2. Create and fill in your `.env` file using the `.env.example` file
-3. From the terminal, `cd` to the `client` folder and run `npm install`. Do the same for the `server` folder.
+3. From the terminal, `cd` to the `client` folder and run `npm install`. Navigate to the `server` folder and run `npm install && pip install -r requirements.txt`
 4. Add new website sources following the directions in the next section. Sample websites are already in place if you would like to use them.
 5. Run `npm run dev` in the `client` and `server` folder to start the program! 
 

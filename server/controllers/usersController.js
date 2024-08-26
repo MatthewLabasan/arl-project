@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler')
 const User = require('../models/User')
 const Keyword = require('../models/Keyword')
 const crypto = require('crypto')
-const { sendUnsubEmail } = require('../services/emailing/sendGrid')
+const { sendUnsubEmail } = require('../services/emailing/sendgrid')
 
 // @desc Get all users
 // @route GET /users

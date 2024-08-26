@@ -152,3 +152,9 @@ Goes directly to sendgrid method, passing in the email and name and topic. Does 
 - Made email sender info more secure
 
 - Next: demo button on home page then deploy
+
+# 8/24/24
+- render.com best for backend, then need to use a separate cdn or on render as well.
+- render.com has 500mb ram usage, not sure if webscraper is too much.
+- if want to deploy as a sample, will need to just create a "send me a demo" button.
+- though, if webscraping is limited for my own topics, should be fine for both.

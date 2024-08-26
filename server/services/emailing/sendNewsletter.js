@@ -1,4 +1,4 @@
-const { sendEmail } = require("./sendGrid")
+const { sendEmail } = require("./sendgrid")
 const { logEvents } = require("../../middleware/logger")
 const schedule = require("node-schedule") // node cron-like scheduler
 const path = require('path')
