@@ -64,7 +64,7 @@ const sendEmail = async () => {
             const msg = {
                 from: {
                     name: process.env.VERIFIED_SENDER_NAME,
-                    email: process.env.VERIFIED_SENDER_EMAIL,
+                    email: process.env.VERIFIED_SENDER_EMAIL
                 },
                 templateId: process.env.TEMPLATE_ID,
                 personalizations: personalizations,
@@ -150,7 +150,7 @@ const sendUnsubEmail = async (email, keyword) => {
             to: email,
             from: {
                 name: process.env.VERIFIED_SENDER_NAME,
-                email: process.env.VERIFIED_SENDER_EMAIL,
+                email: process.env.VERIFIED_SENDER_EMAIL
             },
             templateId: process.env.UNSUB_TEMPLATE_ID,
             dynamic_template_data: {
@@ -221,7 +221,7 @@ const sendDemo = async (email, keyword) => {
             to: email,
             from: {
                 name: process.env.VERIFIED_SENDER_NAME,
-                email: process.env.VERIFIED_SENDER_EMAIL,
+                email: process.env.VERIFIED_SENDER_EMAIL
             },
             templateId: process.env.DEMO_TEMPLATE_ID,
             dynamic_template_data: {
