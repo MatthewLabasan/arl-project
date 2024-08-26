@@ -10,12 +10,10 @@ const { logger } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler')
 const { scrapePuppeteer } = require('./services/webscraper/jsScraper/scrapePuppeteer') // for testing
 const { websiteData } = require('./services/webscraper/websiteData') // for testing
-const { scheduleScrape } = require('./services/webscraper/webscraper') // for main use
-const { scheduleNewsletter } = require('./services/emailing/sendNewsletter') // for main use
+const { sendEmail } = require('./services/emailing/sendgrid') 
+const { scheduleScrape } = require('./services/webscraper/webscraper') // for main use only
+const { scheduleNewsletter } = require('./services/emailing/sendNewsletter') // for main use only
 const PORT = process.env.PORT || 3500
-
-// for testing -- delete
-// const { sendEmail } = require('./services/emailing/sendgrid') 
 
 const app = express();
 console.log(process.env.NODE_ENV)
@@ -36,10 +34,10 @@ app.use('/users', require('./routes/userRoutes'))
 // CSS Selector Testing: See documentation for details.
 // scrapePuppeteer(websiteData)
 
-// Webscraper & Scheduler
+// Webscraper & Scheduler - main use only
 // scheduleScrape()
 
-// Emailer
+// Emailer - main use only
 // scheduleNewsletter()
 
 app.use(errorHandler) 

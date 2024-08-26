@@ -160,7 +160,7 @@ Goes directly to sendgrid method, passing in the email and name and topic. Does 
 - though, if webscraping is limited for my own topics, should be fine for both.
 
 - for deployment, 
-    - question on system wide libraires through brew? need to use imaging / containerization: docker or use something like heroku
+    - question on system wide libraires (newspaper and chrome) through brew? need to use imaging / containerization: docker or use something like heroku
     - mongodb how to white list ip?
 
     - if i want for just viewing:
@@ -177,3 +177,5 @@ Goes directly to sendgrid method, passing in the email and name and topic. Does 
             - create a sendDemoEmail method that iterates through articles but doesnt need a for every keyword. 
             - will just grab keyword and email from request, pass it to API, which will then use that to send.
             - will need to change button to "demo" and include a list of supported words
+
+    - need to fix sendGrid if no author or date, use "no date, etc..."
