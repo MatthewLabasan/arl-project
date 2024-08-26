@@ -79,6 +79,7 @@ const sendEmail = async () => {
                     console.log(`"${keyword.word}" email sent successfully. `)
                 })
                 .catch((error) => {
+                    message += (`Sendgrid Error: ${error}\n`)
                     console.error(error)
                 })
         } catch (error) {
@@ -153,6 +154,7 @@ const sendUnsubEmail = async (email, keyword) => {
                 message += `"${email}" unsubscribed from "${keyword}" successfully.\n`
             })
             .catch((error) => {
+                message += (`Sendgrid Error: ${error}\n`)
                 console.error(error)
             })
     } catch (error) {
@@ -160,9 +162,83 @@ const sendUnsubEmail = async (email, keyword) => {
     }
 }
 
+/** 
+* Sends demo email based on user input.
+* Called in 'usersController.js' under '/demo' route
+* @param {string} email - Email of the user passed in by GET request
+* @param {string} keyword - Keyword of the user passed in by GET request
+*/
+const sendDemo = async (email, keyword) => {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    let message = "[Demo] Internal Log: "
+
+    // obtain database information: future -- use caching for demos
+    try {
+        var keywordObject = await Keyword.findOne({ word: keyword }).
+            populate({
+                path: 'articles'
+            }).exec()
+            message += (`Successfully populated keyword documents.\n`)
+    } catch (error) {
+        message += (`Error populating keyword information. ${error} \nPlease reschedule emails.`)
+        console.log(`Error populating keyword information. ${error} \nPlease reschedule emails.`)
+        return
+    }
+
+    console.log(keywordObject)
+
+    // check if articles present and format for sending
+    if(!keywordObject || keywordObject.articles.length == 0) {
+        var articles = "empty" // for sendgrid template comparison
+        console.log("No word")
+    } else {
+        var articles = keywordObject.articles
+        // randomize & shorten article counts
+        shuffle(articles)
+        articles = limitArticles(keywordObject.articles)
+    }
+
+    // send email
+    try {
+        const msg = {
+            to: email,
+            from: process.env.VERIFIED_SENDER_EMAIL,
+            templateId: process.env.DEMO_TEMPLATE_ID,
+            dynamic_template_data: {
+                "subject": `[DEMO] This week's newsletter on "${keyword}"`,
+                "articles": articles,
+                "Sender_Name": process.env.SENDER_NAME,
+                "Sender_Address": process.env.SENDER_ADDRESS,
+                "Sender_City": process.env.SENDER_CITY,
+                "Sender_State": process.env.SENDER_STATE,
+                "Sender_Zip": process.env.SENDER_ZIP,
+                "empty": "empty",
+                "noArticles": "Your topic hasn't been implented yet or there are no new developments! Come back next week :)",
+                "homepageURL": process.env.CLIENT_HOMEPAGE_URL, 
+            }
+        }
+        sgMail
+            .send(msg)
+            .then(() => {
+                message += `"${keyword}" email sent successfully.\n`
+                console.log(`"${keyword}" email sent successfully. `)
+            })
+            .catch((error) => {
+                message += (`Sendgrid Error: ${error}\n`)
+            })
+    } catch (error) {
+        message += (`An unexpected emailing error occurred: ${error}\n`)
+    }
+
+    message += `Emailing process finished.`
+    return message
+    
+}
+
 module.exports = {
     sendEmail,
-    sendUnsubEmail
+    sendUnsubEmail,
+    sendDemo
 }
 
 

@@ -3,6 +3,8 @@ const User = require('../models/User')
 const Keyword = require('../models/Keyword')
 const crypto = require('crypto')
 const { sendUnsubEmail } = require('../services/emailing/sendgrid')
+const { sendDemo } = require('../services/emailing/sendgrid')
+
 
 // @desc Get all users
 // @route GET /users
@@ -98,9 +100,25 @@ const deleteUsers = asyncHandler(async(req, res) => {
     res.status(405).json({ message: "Deleting users not implemented."})
 })
 
+// @desc Get a demo email
+// @route POST /users/demo
+// For demo version only
+const getDemo = asyncHandler(async(req, res) => {
+    const { email, keyword } = req.body
+    word = keyword.toLowerCase() 
+    if( !email || !word ) {
+        return res.status(400).json({ message: "No input provided."})
+    }
+
+    // send demo email
+    jsonMessage = await sendDemo(email, word)
+    res.status(200).json({ message: `${jsonMessage} \n Demo email on "${word}" sent to ${email}.` })
+})
+
 module.exports = {
     getAllUsers,
     createNewUsers,
     updateUsers,
-    deleteUsers
+    deleteUsers,
+    getDemo
 }

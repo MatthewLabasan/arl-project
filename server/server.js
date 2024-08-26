@@ -10,7 +10,6 @@ const { logger } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler')
 const { scrapePuppeteer } = require('./services/webscraper/jsScraper/scrapePuppeteer') // for testing
 const { websiteData } = require('./services/webscraper/websiteData') // for testing
-const { sendEmail } = require('./services/emailing/sendgrid') 
 const { scheduleScrape } = require('./services/webscraper/webscraper') // for main use only
 const { scheduleNewsletter } = require('./services/emailing/sendNewsletter') // for main use only
 const PORT = process.env.PORT || 3500
@@ -21,7 +20,7 @@ console.log(process.env.NODE_ENV)
 connectDB()
 
 app.use(logger) // custom logs
-app.use(cors(corsOptions)) // cross origin request management (for front and back sep. and security)
+app.use(cors(corsOptions))
 app.use(express.json()) 
 app.use(cookieParser())
 

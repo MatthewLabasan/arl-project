@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import logo from '/logo.png'
 import '../components/signupform/SignUpForm.jsx'
-import SignUpForm from '../components/signupform/SignUpForm.jsx'
+import DemoSignUpForm from '../components/signupform/DemoSignUpForm.jsx'
 import './Home.css'
 
 const Home = () => {
@@ -15,8 +15,9 @@ const Home = () => {
         </a>
         <h1>scibyte</h1>
         <h2>Stay Informed with Tailored Research Updates</h2>
-        <p>Looking to stay up to date on a specific topic? Simply enter your topic of interest, and receive curated weekly emails featuring the latest news, research articles, and updates. Never miss out on key developments and keep your knowledge fresh with scibyte! </p>
-        <SignUpForm></SignUpForm>
+        <p>Looking to stay up to date on a specific topic? Simply enter your topic of interest, and receive curated weekly emails featuring the latest news, research articles, and updates.</p>
+        <p>Suggested demo words: 'ai', 'sensor', 'tech'</p>
+        <DemoSignUpForm></DemoSignUpForm>
         <a href="https://github.com/MatthewLabasan/arl-project" className="read-the-docs">
           See source code here!
         </a>
