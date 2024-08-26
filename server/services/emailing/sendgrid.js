@@ -185,12 +185,9 @@ const sendDemo = async (email, keyword) => {
         return
     }
 
-    console.log(keywordObject)
-
     // check if articles present and format for sending
     if(!keywordObject || keywordObject.articles.length == 0) {
         var articles = "empty" // for sendgrid template comparison
-        console.log("No word")
     } else {
         var articles = keywordObject.articles
         // randomize & shorten article counts
