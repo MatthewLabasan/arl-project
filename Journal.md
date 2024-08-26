@@ -182,3 +182,4 @@ Goes directly to sendgrid method, passing in the email and name and topic. Does 
 
 # 8/25/24
 - Finished demo version, created users/demo POST API on backend. Modified sign up page on demo.
+- Problem with demo version deployment, won't send email
