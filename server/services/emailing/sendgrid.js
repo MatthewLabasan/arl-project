@@ -4,6 +4,7 @@ const sgMail = require('@sendgrid/mail')
 /** 
 * Sends mass email to everyone subscribed using SendGrid API.
 * Emails sent in masses, one keyword at a time.
+* Handles if keywords have no subscribers.
 */
 const sendEmail = async () => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
@@ -29,6 +30,11 @@ const sendEmail = async () => {
     for (const keyword of keywords) {
         // prepare sendgrid personalization json. takes an array of json info for each user
         let personalizations = []
+        if (keyword.users.length == 0) {
+            message += `"${keyword.word}" has no subscribers.\n`
+            console.log(`"${keyword.word}" has no subscribers. `)
+            continue
+        }
         for (const user of keyword.users) {
             const unsubAuthToken = user.unsubAuthToken
             personalizations.push({ 
@@ -56,7 +62,10 @@ const sendEmail = async () => {
         // send email
         try {
             const msg = {
-                from: process.env.VERIFIED_SENDER_EMAIL,
+                from: {
+                    name: process.env.VERIFIED_SENDER_NAME,
+                    email: process.env.VERIFIED_SENDER_EMAIL,
+                },
                 templateId: process.env.TEMPLATE_ID,
                 personalizations: personalizations,
                 dynamic_template_data: {
@@ -75,8 +84,8 @@ const sendEmail = async () => {
             await (async () => { // need to await to get internal success log and prevent render.com from shutting async process down when external async is done.
                 try {
                     await sgMail.send(msg);
-                    message += `"${keyword}" email sent successfully.\n`
-                    console.log(`"${keyword}" email sent successfully. `)
+                    message += `"${keyword.word}" email sent successfully.\n`
+                    console.log(`"${keyword.word}" email sent successfully. `)
                 } catch (error) {
                     console.error(error);
                   
@@ -90,11 +99,10 @@ const sendEmail = async () => {
             message += (`An unexpected emailing error occurred: ${error}\n`)
             console.log(`An unexpected emailing error occurred: ${error}\n`)
         }
-    
-        message += `Emailing process finished.`
-        console.log(`Emailing process finished.`)
-        return message
     }
+    message += `Emailing process finished.`
+    console.log(`Emailing process finished.`)
+    return message
 }
 
 /** 
@@ -140,7 +148,10 @@ const sendUnsubEmail = async (email, keyword) => {
     try {
         const msg = {
             to: email,
-            from: process.env.VERIFIED_SENDER_EMAIL,
+            from: {
+                name: process.env.VERIFIED_SENDER_NAME,
+                email: process.env.VERIFIED_SENDER_EMAIL,
+            },
             templateId: process.env.UNSUB_TEMPLATE_ID,
             dynamic_template_data: {
                 "subject": `You have unsubscribed from "${keyword}"`,
