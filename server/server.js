@@ -10,8 +10,8 @@ const { logger } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler')
 const { scrapePuppeteer } = require('./services/webscraper/jsScraper/scrapePuppeteer') // for testing
 const { websiteData } = require('./services/webscraper/websiteData') // for testing
-const { scheduleScrape } = require('./services/webscraper/webscraper')
-const { scheduleNewsletter } = require('./services/emailing/sendNewsletter') 
+const { scheduleScrape } = require('./services/webscraper/webscraper') // for main use
+const { scheduleNewsletter } = require('./services/emailing/sendNewsletter') // for main use
 const PORT = process.env.PORT || 3500
 
 // for testing -- delete
@@ -37,16 +37,16 @@ app.use('/users', require('./routes/userRoutes'))
 // scrapePuppeteer(websiteData)
 
 // Webscraper & Scheduler
-scheduleScrape()
+// scheduleScrape()
 
 // Emailer
-scheduleNewsletter()
+// scheduleNewsletter()
 
 app.use(errorHandler) 
 
 mongoose.connection.once('open', () => {
     console.log("Server connected to MongoDB database successfully.")
     app.listen(PORT, () => {
-        console.log(`Server listening on PORT ${PORT}. Access at <http://localhost:3500/>`)
+        console.log(`Server listening on PORT ${PORT}.`)
     })
 })
