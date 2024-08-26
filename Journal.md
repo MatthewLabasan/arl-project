@@ -160,7 +160,7 @@ Goes directly to sendgrid method, passing in the email and name and topic. Does 
 - though, if webscraping is limited for my own topics, should be fine for both.
 
 - for deployment, 
-    - question on system wide libraires through brew? need to use imaging / containerization: docker or use something like heroku
+    - question on system wide libraires (newspaper and chrome) through brew? need to use imaging / containerization: docker or use something like heroku
     - mongodb how to white list ip?
 
     - if i want for just viewing:

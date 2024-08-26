@@ -55,7 +55,7 @@ This project was developed to enhance research surveys at the Applied Research L
 *Left*: Newsletter, *Right*: Unsubscription Email
 
 ## Custom Deployment
-To deploy the client, you will need to create an image due to the external system level dependencies needed by Newspaper3k. You can use [Docker](https://www.docker.com/get-started/) to assist this, or use a deployment service such as [Heroku](https://devcenter.heroku.com/articles/buildpacks) that has built in system dependency management.
+To deploy the client, you will need to create an image due to the external system level dependencies needed by the webscrapers. You can use [Docker](https://www.docker.com/get-started/) to assist this, or use a deployment service such as [Heroku](https://devcenter.heroku.com/articles/buildpacks) that has built in system dependency management.
 
 ## Adding New Sources
 You will want to add new sources to scrape from as users continue to sign up for new keywords. To do this, please ensure that the sources you use fill the following prerequisites:
