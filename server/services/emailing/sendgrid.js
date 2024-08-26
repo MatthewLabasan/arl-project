@@ -72,23 +72,29 @@ const sendEmail = async () => {
                     "homepageURL": process.env.CLIENT_HOMEPAGE_URL, 
                 }
             }
-            sgMail
-                .send(msg)
-                .then(() => {
-                    message += `"${keyword.word}" email sent successfully.\n`
-                    console.log(`"${keyword.word}" email sent successfully. `)
-                })
-                .catch((error) => {
-                    console.error(error)
-                })
+            await (async () => { // need to await to get internal success log and prevent render.com from shutting async process down when external async is done.
+                try {
+                    await sgMail.send(msg);
+                    message += `"${keyword}" email sent successfully.\n`
+                    console.log(`"${keyword}" email sent successfully. `)
+                } catch (error) {
+                    console.error(error);
+                  
+                    if (error.response) {
+                        console.error(error.response.body)
+                    }
+                    message += (`Sendgrid Error: ${error}\n`)
+                }
+            })();
         } catch (error) {
             message += (`An unexpected emailing error occurred: ${error}\n`)
             console.log(`An unexpected emailing error occurred: ${error}\n`)
         }
+    
+        message += `Emailing process finished.`
+        console.log(`Emailing process finished.`)
+        return message
     }
-    message += `Emailing process finished.`
-    console.log(`Emailing process finished.`)
-    return message
 }
 
 /** 
@@ -147,14 +153,19 @@ const sendUnsubEmail = async (email, keyword) => {
                 "homepageURL": process.env.CLIENT_HOMEPAGE_URL,
             }
         }
-        sgMail
-            .send(msg)
-            .then(() => {
+        await (async () => { // need to await to get internal success log and prevent render.com from shutting async process down when external async is done.
+            try {
+                await sgMail.send(msg);
                 message += `"${email}" unsubscribed from "${keyword}" successfully.\n`
-            })
-            .catch((error) => {
-                console.error(error)
-            })
+            } catch (error) {
+                console.error(error);
+              
+                if (error.response) {
+                    message += (`Sendgrid Error: ${error.response.body}\n`)
+                }
+                message += (`Sendgrid Error: ${error}\n`)
+            }
+        })();
     } catch (error) {
         message += (`An unexpected error occurred when unsubscribing ${email} from ${keyword}: ${error}\n`)
     }

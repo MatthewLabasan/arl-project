@@ -35,10 +35,10 @@ app.use('/users', require('./routes/userRoutes'))
 // scrapePuppeteer(websiteData)
 
 // Webscraper & Scheduler - main use only
-// scheduleScrape()
+scheduleScrape()
 
 // Emailer - main use only
-// scheduleNewsletter()
+scheduleNewsletter()
 
 app.use(errorHandler) 
 
