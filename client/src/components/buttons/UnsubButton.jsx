@@ -21,7 +21,7 @@ const UnsubButton = () => {
         const user = { keyword, unsubAuthToken } // create json 
         
         try {
-            const response = await fetch('http://localhost:3500/users', { 
+            const response = await fetch('https://scibyte-backend.onrender.com/users', { 
                 method: 'PATCH',
                 headers: { "Content-Type": "application/json" }, 
                 body: JSON.stringify(user) // turn object into string
