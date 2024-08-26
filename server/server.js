@@ -41,7 +41,6 @@ scheduleScrape()
 
 // Emailer
 scheduleNewsletter()
-// sendEmail() // delete
 
 app.use(errorHandler) 
 
