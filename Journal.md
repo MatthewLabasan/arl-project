@@ -179,3 +179,6 @@ Goes directly to sendgrid method, passing in the email and name and topic. Does 
             - will need to change button to "demo" and include a list of supported words
 
     - need to fix sendGrid if no author or date, use "no date, etc..."
+
+# 8/25/24
+- Finished demo version, created users/demo POST API on backend. Modified sign up page on demo.
