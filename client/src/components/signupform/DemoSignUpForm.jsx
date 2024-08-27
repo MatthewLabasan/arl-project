@@ -14,10 +14,11 @@ const DemoSignUpForm = () => {
     const handleSubmit = async (e) => { // e = event object to be modified
         e.preventDefault() // prevent refresh on submit
         const user = { email, keyword } // create json 
-        console.log(user)
+
+        setStatus('Server deployment will take a few minutes to start up after submission. Your email is on its way!')
         
         try {
-            const response = await fetch('https://scibyte-backend.onrender.com/users/demo', { 
+            const response = await fetch('http://localhost:3500/users/demo', { 
                 method: 'POST',
                 headers: { "Content-Type": "application/json" }, // tells format of body
                 body: JSON.stringify(user) // turn object into string. payload
