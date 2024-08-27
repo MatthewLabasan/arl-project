@@ -237,6 +237,7 @@ const sendDemo = async (email, keyword) => {
                 "homepageURL": process.env.CLIENT_HOMEPAGE_URL, 
             }
         }
+        console.log(msg)
         await (async () => { // need to await to get internal success log and prevent render.com from shutting async process down when external async is done.
             try {
                 await sgMail.send(msg);
@@ -257,6 +258,7 @@ const sendDemo = async (email, keyword) => {
     }
 
     message += `Emailing process finished.`
+    console.log(message)
     return message
     
 }
