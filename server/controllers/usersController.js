@@ -113,7 +113,7 @@ const getDemo = asyncHandler(async(req, res) => {
     // send demo email
     let jsonMessage = await sendDemo(email, word)
     console.log(jsonMessage)
-    res.status(200).json({ message: `${jsonMessage} \n Demo email on "${word}" sent to ${email}.` })
+    res.status(200).json({ message: jsonMessage.message, userMessage: jsonMessage.userMessage })
 })
 
 module.exports = {

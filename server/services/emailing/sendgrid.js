@@ -191,6 +191,7 @@ const sendUnsubEmail = async (email, keyword) => {
 const sendDemo = async (email, keyword) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
     let message = "[Demo] Internal Log: "
+    let userMessage = ""
 
     // obtain database information: future -- use caching for demos
     try {
@@ -237,19 +238,20 @@ const sendDemo = async (email, keyword) => {
                 "homepageURL": process.env.CLIENT_HOMEPAGE_URL, 
             }
         }
-        console.log(msg)
         await (async () => { // need to await to get internal success log and prevent render.com from shutting async process down when external async is done.
             try {
                 await sgMail.send(msg);
-                message += `"${keyword}" email sent successfully.\n`
-                console.log(`"${keyword}" email sent successfully. `)
+                message += `Demo email on "${keyword}" sent to ${email}.\n`
+                userMessage += `Demo email on "${keyword}" sent to ${email}.`
+                console.log(`Demo email on "${keyword}" sent to ${email}.`)
             } catch (error) {
                 console.error(error);
               
                 if (error.response) {
                     console.error(error.response.body)
                 }
-                message += (`Sendgrid Error: ${error}\n`)
+                message += `Sendgrid Error: ${error}\n`
+                userMessage += `Failed to send a demo email on "${keyword}" to ${email}. Please try again!\nSendgrid Error: ${error}`
             }
         })();
     } catch (error) {
@@ -257,10 +259,14 @@ const sendDemo = async (email, keyword) => {
         console.log(`An unexpected emailing error occurred: ${error}\n`)
     }
 
+    // create return obj
     message += `Emailing process finished.`
-    console.log(message)
-    return message
-    
+    jsonMessage = {
+        message,
+        userMessage
+    }
+
+    return jsonMessage
 }
 
 module.exports = {

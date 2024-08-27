@@ -24,7 +24,7 @@ const DemoSignUpForm = () => {
             })
             const json = await response.json()
             setReceived(true)
-            setStatus(json.message)
+            setStatus(json.userMessage)
         } catch (error) {
             console.log(error.message)
             setReceived(true)
