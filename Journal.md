@@ -183,3 +183,8 @@ Goes directly to sendgrid method, passing in the email and name and topic. Does 
 # 8/25/24
 - Finished demo version, created users/demo POST API on backend. Modified sign up page on demo.
 - Problem with demo version deployment, won't send email
+
+# 8/27/24
+- Demo emailing works locally but not on deployment due to weird subject and content error, though all information should be present
+- Sent in a support request and also tried changing the subject of the demo template to be a constant --- did not work
+- Will wait for response to continue
