@@ -16,7 +16,7 @@ const Home = () => {
         <h1>scibyte</h1>
         <h2>Stay Informed with Tailored Research Updates</h2>
         <p>Looking to stay up to date on a specific topic? Simply enter your topic of interest, and receive curated weekly emails featuring the latest news, research articles, and updates.</p>
-        <p>Suggested demo words: 'ai', 'sensor', 'tech'</p>
+        <p>Suggested demo words: 'ai', 'sensor', 'tech' | Last web scrape run on 8/27/24.</p>
         <DemoSignUpForm></DemoSignUpForm>
         <a href="https://github.com/MatthewLabasan/arl-project" className="read-the-docs">
           See source code here!
