@@ -238,6 +238,8 @@ const sendDemo = async (email, keyword) => {
                 "homepageURL": process.env.CLIENT_HOMEPAGE_URL, 
             }
         };
+        console.log(keyword)
+        console.log(msg.dynamic_template_data)
         await (async () => { // need to await to get internal success log and prevent render.com from shutting async process down when external async is done.
             try {
                 await sgMail.send(msg);
