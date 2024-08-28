@@ -78,7 +78,7 @@ const sendEmail = async () => {
                     "Sender_Zip": process.env.SENDER_ZIP,
                     "empty": "empty",
                     "noArticles": "Your topic hasn't been implented yet or there are no new developments! Come back next week :)",
-                    "homepageURL": process.env.CLIENT_HOMEPAGE_URL, 
+                    "homepageURL": process.env.CLIENT_HOMEPAGE_URL 
                 }
             }
             await (async () => { // need to await to get internal success log and prevent render.com from shutting async process down when external async is done.
@@ -161,7 +161,7 @@ const sendUnsubEmail = async (email, keyword) => {
                 "Sender_City": "Honolulu",
                 "Sender_State": "HI",
                 "Sender_Zip": "96822",
-                "homepageURL": process.env.CLIENT_HOMEPAGE_URL,
+                "homepageURL": process.env.CLIENT_HOMEPAGE_URL
             }
         }
         await (async () => { // need to await to get internal success log and prevent render.com from shutting async process down when external async is done.
@@ -235,7 +235,7 @@ const sendDemo = async (email, keyword) => {
                 "Sender_Zip": process.env.SENDER_ZIP,
                 "empty": "empty",
                 "noArticles": "Your topic hasn't been implented yet or there are no new developments! Come back next week :)",
-                "homepageURL": process.env.CLIENT_HOMEPAGE_URL, 
+                "homepageURL": process.env.CLIENT_HOMEPAGE_URL
             }
         };
         console.log(keyword)
