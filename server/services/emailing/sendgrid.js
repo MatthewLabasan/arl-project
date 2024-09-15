@@ -242,7 +242,17 @@ const sendDemo = async (email, keyword) => {
         console.log(msg.dynamic_template_data)
         await (async () => { // need to await to get internal success log and prevent render.com from shutting async process down when external async is done.
             try {
-                await sgMail.send(msg);
+
+                // const {
+                //     classes: {
+                //       Mail,
+                //     },
+                //   } = require('@sendgrid/helpers');
+                //   const mail = Mail.create(data);
+                //   const body = mail.toJSON();
+                //   console.log(JSON.stringify(body));
+
+                sgMail.send(msg);
                 message += `Demo email on "${keyword}" sent to ${email}.\n`
                 userMessage += `Demo email on "${keyword}" sent to ${email}.`
                 console.log(`Demo email on "${keyword}" sent to ${email}.`)
