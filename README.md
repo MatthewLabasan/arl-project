@@ -2,6 +2,7 @@
 
 # Demo
 Checkout the live site here: [https://scibyte.onrender.com/](https://scibyte.onrender.com/)
+
 _Note_: There are unresolved problems with the Sendgrid API, so demo emails are unavailable at the moment.
 
 ![SciByte Demo](./server/public/SciByteDemo.gif)
