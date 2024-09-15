@@ -1,5 +1,9 @@
 # SciByte: Personalized Research Delivered to Your Inbox
-This README.md is under construction!
+
+# Demo
+Checkout the live site here: [https://scibyte.onrender.com/](https://scibyte.onrender.com/)
+_Note_: There are unresolved problems with the Sendgrid API, so demo emails are unavailable at the moment.
+
 
 # Table of Contents
 1. [Introduction](#introduction)
