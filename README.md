@@ -1,6 +1,7 @@
 # SciByte: Personalized Research Delivered to Your Inbox
 
 # Demo
+The GIF for the demo is below and may take a couple seconds to load.
 Checkout the live site here: [https://scibyte.onrender.com/](https://scibyte.onrender.com/)
 
 _Note_: There are unresolved problems with the Sendgrid API, so demo emails are unavailable at the moment.
